@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>帕恰狗 - Pochacco</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            font-family:"微软雅黑",sans-serif;
+            background:#f9fbe7;
+        }
+        /*导航*/
+        .nav{
+            background:#f0f8d7;
+            padding:18px;
+            display:flex;
+            gap:45px;
+            justify-content:center;
+        }
+        .nav a{
+            color:#333;
+            text-decoration:none;
+            font-size:20px;
+        }
+        .nav a:hover{
+            color:#88b922;
+        }
+        .nav a.active{
+            background:#d8ec9c;
+            padding:6px 12px;
+            border-radius:8px;
+            color:#222;
+        }
+        .container{
+            width:92%;
+            max-width:1100px;
+            margin:30px auto;
+        }
+.title{
+    font-size:30px;
+    color:#6b8800;
+    margin:0;
+    font-weight:bold;
+}
+.title-box{
+    text-align:center;
+    margin:35px 0 15px;
+}
+.title-box small{
+    display:block;
+    font-size:15px;
+    color:#8fa044;
+    letter-spacing:3px;
+    margin-top:6px;
+    font-family:Arial;
+    font-weight:600;
+}
+
+        /*第一行：左图 右文字*/
+        .top-row{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:22px;
+            margin-bottom:30px;
+        }
+        .left-card{
+            background:#f4f9d9;
+            border-radius:10px;
+            padding:30px 20px;
+            text-align:center;
+        }
+        .left-card img{
+            width:70%;
+            display:block;
+            margin:0 auto 15px;
+        }
+        .left-card h4{
+            font-size:32px;
+            color:#789900;
+            margin-bottom:6px;
+        }
+        .left-card p{
+            font-size:20px;
+            color:#789900;
+        }
+        .right-card{
+            background:#f4f9d9;
+            border-radius:10px;
+            padding:40px 35px;
+        }
+        .right-card p{
+            font-size:24px;
+            color:#789900;
+            white-space:nowrap;
+            line-height:2.2;
+            border-bottom:2px dashed #c2d270;
+            padding-bottom:12px;
+        }
+
+        /*角色特点 7:3 已删除虚线上方描述文字*/
+        .feature-box{
+            display:grid;
+            grid-template-columns:7fr 3fr;
+            gap:22px;
+            margin-bottom:30px;
+        }
+        .feature-left{
+            background:#eef6cc;
+            border-radius:10px;
+            padding:25px;
+        }
+        .info-table{
+            margin-top:0;
+        }
+        .table-row{
+            display:grid;
+            grid-template-columns:90px 1fr 90px 1fr;
+            padding:9px 0;
+            border-bottom:1px dashed #c2d270;
+            font-size:16px;
+        }
+        .table-row:last-child{
+            border-bottom:none;
+        }
+        .label{
+            color:#555;
+        }
+        .val{
+	color: #899b42;
+        }
+        .feature-right img{
+            width:100%;
+            border-radius:10px;
+            display:block;
+        }
+
+        /* 形象设定：三栏卡片，每栏上图下文 */
+        .setting-wrap{
+            background:#eef6cc;
+            border-radius:10px;
+            padding:35px;
+            margin-bottom:30px;
+        }
+        .setting-three{
+            display:grid;
+            grid-template-columns:1fr 1fr 1fr;
+            gap:25px;
+        }
+        .setting-card{
+            background:#f4f9d9;
+            border-radius:10px;
+            padding:22px;
+            text-align:center;
+        }
+        .setting-card img{
+            width:100%;
+            height:200px;
+            object-fit:cover;
+            border-radius:8px;
+            margin-bottom:15px;
+        }
+        .setting-card h4{
+            font-size:22px;
+            color:#6b8800;
+            margin-bottom:15px;
+            padding-bottom:8px;
+            border-bottom:1px dashed #c2d270;
+        }
+        .setting-card p{
+            font-size:16px;
+            line-height:1.75;
+            color:#333;
+            text-align:left;
+        }
+
+        /* ========= 前往参观板块：图片缩放适配容器、一高一低上下交错 ========= */
+        .gallery-wrap{
+            background:#eef6cc;
+            border-radius:10px;
+            padding:50px 20px;
+            text-align:center;
+        }
+        .gallery-top-text{
+            color:#6b8800;
+            font-size:26px;
+            margin-bottom:40px;
+            position:relative;
+        }
+        /* 三个圆点定位 */
+        .gallery-top-text::before{
+            content:"";
+            position:absolute;
+            left:-36px;
+            top:-14px;
+            width:16px;
+            height:16px;
+            border-radius:50%;
+            background:#b2c96e;
+        }
+        .gallery-top-text::after{
+            content:"";
+            position:absolute;
+            right:-36px;
+            top:-14px;
+            width:16px;
+            height:16px;
+            border-radius:50%;
+            background:#b2c96e;
+        }
+        .gallery-top-text span::before{
+            content:"";
+            position:absolute;
+            left:50%;
+            transform:translateX(-50%);
+            top:-30px;
+            width:16px;
+            height:16px;
+            border-radius:50%;
+            background:#b2c96e;
+        }
+        .gallery-top-text span::before,
+        .gallery-top-text span::after{
+            content:"🌾";
+            margin:0 8px;
+        }
+        /* 顶部对齐，靠margin-top实现高低交错 */
+        .gallery-row{
+            display:flex;
+            justify-content:center;
+            align-items:flex-start;
+            gap:18px;
+        }
+        /* 统一宽度容器，图片自动缩放填满内部 */
+        .gallery-item{
+            width:16%;
+            border:1px solid #c2d270;
+            border-radius:6px;
+            overflow:hidden;
+        }
+        .gallery-item img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            display:block;
+        }
+        /* 容器高度一致，整体上下偏移制造错落视觉 */
+        .item1{
+            height:310px;
+            margin-top:0;
+        }
+        .item2{
+            height:310px;
+            margin-top:90px;
+        }
+        .item3{
+            height:310px;
+            margin-top:120px;
+        }
+        .item4{
+            height:310px;
+            margin-top:80px;
+        }
+        .item5{
+            height:310px;
+            margin-top:0;
+        }
+
+        /* ========= 帕恰狗淡色回首页按钮 ========= */
+        .back-home{
+            position: fixed;
+            right: 20px;
+            bottom: 12px;
+            padding: 5px 11px;
+            font-size: 12px;
+            background: #e7f0b0;
+            color: #6b8800;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        .back-home.show{
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-home:hover{
+            background: #dce99c;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="nav">
+    <a href="index.html">Sanrio Friends | 网站首页</a>
+    <a href="kitty.html">凯蒂猫</a>
+    <a href="melody.html">美乐蒂</a>
+    <a href="purin.html">布丁狗</a>
+    <a href="cinna.html">大耳狗</a>
+    <a href="kuromi.html">库洛米</a>
+    <a href="pochacco.html" class="active">帕恰狗</a>
+</div>
+
+<div class="container">
+    <!--第一排-->
+    <div class="top-row">
+      <div class="left-card">
+            <img src="images/帕恰狗/d1.png">
+            <h4>帕恰狗</h4>
+            <p>POCHACCO</p>
+      </div>
+        <div class="right-card">
+            <p>帕恰狗的好奇心旺盛，有些冒失，又有一点点爱管闲事。</p>
+            <p>他是喜欢绕道散步的小狗男孩。出生在软绵绵城郊外的黄莺小巷。</p>
+            <p>身高和4大杯他最爱吃的香蕉冰激凌一样；</p>
+            <p>体重则是相当于3根软绵绵城田野中的胡萝卜。</p>
+        </div>
+    </div>
+
+    <!--角色特点【已删除虚线上方黑色描述文字】-->
+<div class="title-box">
+    <h3 class="title">角色特点</h3>
+    <small>ABOUT POCHACCO</small>
+</div>
+    <div class="feature-box">
+        <div class="feature-left">
+            <div class="info-table">
+                <div class="table-row">
+                    <span class="label">中文名</span>
+                    <span class="val">帕恰狗</span>
+                    <span class="label">生　日</span>
+                    <span class="val">2月29日</span>
+                </div>
+                <div class="table-row">
+                    <span class="label">外文名</span>
+                    <span class="val">Pochacco</span>
+                    <span class="label">星　座</span>
+                    <span class="val">双鱼座</span>
+                </div>
+                <div class="table-row">
+                    <span class="label">别　名</span>
+                    <span class="val">波查科</span>
+                    <span class="label">出生地</span>
+                    <span class="val">软绵绵城</span>
+                </div>
+                <div class="table-row">
+                    <span class="label">性　别</span>
+                    <span class="val">男</span>
+                    <span class="label">爱　好</span>
+                    <span class="val">运动</span>
+                </div>
+                <div class="table-row">
+                    <span class="label">登场作品</span>
+                    <span class="val">Hello Kitty爱漫游</span>
+                    <span class="label">爱吃食物</span>
+                    <span class="val">香蕉冰淇淋</span>
+                </div>
+            </div>
+        </div>
+        <div class="feature-right">
+            <img src="images/帕恰狗/10.jpeg">
+        </div>
+    </div>
+
+
+    <!-- 形象设定：三栏分别对应姓名由来 / 角色外形 / 性格特点 每栏上方配图 -->
+<div class="title-box">
+    <h3 class="title">形象设定</h3>
+    <small>CHARACTER DESIGN</small>
+</div>
+  <div class="setting-wrap">
+    <div class="setting-three">
+          <div class="setting-card">
+              <img src="images/帕恰狗/8.jpeg" alt="姓名由来配图">
+              <h4>姓名由来</h4>
+              <p>帕恰狗有一张胖胖的脸，而英语中（pocha pocha----chubby）译为胖乎乎的，合在一起简称Pochacco，帕恰狗是其音译，刚好与他狗狗的身份对应。</p>
+      </div>
+          <div class="setting-card">
+              <img src="images/帕恰狗/1.jpg" alt="角色外形配图">
+              <h4>角色外形</h4>
+              <p>帕恰狗于1989年首次亮相。形象为长长的耳朵和胖胖的脸，并未穿衣服，1991年出现身穿衬衫的形象。</p>
+      </div>
+          <div class="setting-card">
+              <img src="images/帕恰狗/9.jpeg" alt="性格特点配图">
+              <h4>性格特点</h4>
+              <p>帕恰狗好奇心旺盛，有些冒失，有一点点爱管闲事。性格活泼，平时很热爱运动，特别喜欢篮球足球（尤其是当守门员）。</p>
+      </div>
+    </div>
+    </div>
+
+    <!-- 前往参观板块：图片缩放适配容器、一高一低交错布局 -->
+    <div class="gallery-wrap">
+        <div class="gallery-top-text">
+            <span>图片展示</span>
+        </div>
+        <div class="gallery-row">
+            <div class="gallery-item item1">
+                <img src="images/帕恰狗/3.jpg" alt="">
+            </div>
+            <div class="gallery-item item2">
+                <img src="images/帕恰狗/a.jpg" alt="">
+            </div>
+            <div class="gallery-item item3">
+                <img src="images/帕恰狗/b.jpg" alt="">
+            </div>
+            <div class="gallery-item item4">
+                <img src="images/帕恰狗/kv4.jpg" alt="">
+            </div>
+            <div class="gallery-item item5">
+                <img src="images/帕恰狗/c.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- 回首页按钮 -->
+<a href="index.html" class="back-home">🏠 回首页</a>
+
+<script>
+// 滑到底显示回首页按钮
+document.addEventListener('DOMContentLoaded', function () {
+    var backBtn = document.querySelector('.back-home');
+    function checkScroll() {
+        var sTop = window.pageYOffset || document.documentElement.scrollTop;
+        var totalH = document.documentElement.scrollHeight;
+        var viewH = document.documentElement.clientHeight;
+        if(sTop + viewH >= totalH - 80){
+            backBtn.classList.add('show');
+        }else{
+            backBtn.classList.remove('show');
+        }
+    }
+    window.addEventListener('scroll', checkScroll);
+    checkScroll();
+});
+</script>
+</body>
+</html>

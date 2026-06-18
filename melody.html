@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>美乐蒂 - My Melody</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            font-family:"微软雅黑",sans-serif;
+            background:#fff0f7;
+        }
+        /*导航*/
+        .nav{
+            background:#ffe6f2;
+            padding:18px;
+            display:flex;
+            gap:45px;
+            justify-content:center;
+        }
+        .nav a{
+            color:#333;
+            text-decoration:none;
+            font-size:20px;
+        }
+        .nav a:hover{
+            color:#ff699c;
+        }
+        .nav a.active{
+            background:#ffb3d9;
+            padding:6px 12px;
+            border-radius:8px;
+            color:#222;
+        }
+        .container{
+            width:92%;
+            max-width:1100px;
+            margin:0 auto;
+        }
+        .section-wrap{
+            padding:30px 0;
+        }
+        /* 新交替粉色 */
+        .bg-pink1{
+            background:#ffeeee;
+        }
+        .bg-pink2{
+            background:#ffe4e8;
+        }
+.title{
+    font-size:30px;
+    color:#cc6699;
+    margin:0;
+    font-weight:bold;
+}
+.title-box{
+    text-align:center;
+    margin:0 auto 15px;
+}
+.title-box small{
+    display:block;
+    font-size:15px;
+    color:#cc88aa;
+    letter-spacing:3px;
+    margin-top:6px;
+    font-family:Arial;
+    font-weight:600;
+}
+
+        /*第一行：左图 右文字*/
+        .top-row{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:22px;
+        }
+        .left-card{
+            background:#ffe6f2;
+            border-radius:10px;
+            padding:30px 20px;
+            text-align:center;
+        }
+        .left-card img{
+            width:70%;
+            display:block;
+            margin:0 auto 15px;
+        }
+        .left-card h4{
+            font-size:32px;
+            color:#cc6699;
+            margin-bottom:6px;
+        }
+        .left-card p{
+            font-size:20px;
+            color:#cc6699;
+        }
+        .right-card{
+            background:#ffe6f2;
+            border-radius:10px;
+            padding:40px 35px;
+        }
+        .right-card p{
+            font-size:24px;
+            color:#cc6699;
+            white-space:nowrap;
+            line-height:2.2;
+            border-bottom:2px dashed #ffb3d9;
+            padding-bottom:12px;
+        }
+
+        /* 图片卡片 二排三列 */
+        .card-layout{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:20px;
+        }
+        .card-item{
+            background:#ffe6f2;
+            border-radius:10px;
+            overflow:hidden;
+            text-align:center;
+        }
+        .card-item img{
+            width:100%;
+            display:block;
+        }
+        .card-item p{
+            padding:15px;
+            color:#cc6699;
+            font-size:16px;
+        }
+
+        /*角色特点 7:3*/
+        .feature-box{
+            display:grid;
+            grid-template-columns:7fr 3fr;
+            gap:22px;
+        }
+        .feature-left{
+            background:#ffe6f2;
+            border-radius:10px;
+            padding:25px;
+        }
+        .feature-desc{
+            font-size:17px;
+            line-height:1.8;
+            padding-bottom:18px;
+            border-bottom:2px dashed #ffb3d9;
+        }
+        .info-table{
+            margin-top:18px;
+        }
+        .table-row{
+            display:grid;
+            grid-template-columns:90px 1fr 90px 1fr;
+            padding:9px 0;
+            border-bottom:1px dashed #ffb3d9;
+            font-size:16px;
+        }
+        .table-row:last-child{
+            border-bottom:none;
+        }
+        .label{
+            color:#555;
+        }
+        .val{
+            color:#cc6699;
+        }
+        .feature-right img{
+            width:100%;
+            border-radius:10px;
+            display:block;
+        }
+
+        /*角色生活：一排三列 · 上图下文字*/
+        .life-section{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:22px;
+        }
+        .life-box{
+            background:#ffe6f2;
+            border-radius:10px;
+            overflow:hidden;
+        }
+        .life-box img{
+            width:100%;
+            display:block;
+        }
+        .life-text{
+            padding:20px;
+            font-size:16px;
+            line-height:2;
+        }
+
+        /*单独大图*/
+        .single-img{
+            margin-bottom:30px;
+        }
+        .single-img img{
+            width:100%;
+            border-radius:10px;
+        }
+
+        /* 回首页按钮 */
+        .back-home{
+            position: fixed;
+            right: 20px;
+            bottom: 12px;
+            padding: 5px 11px;
+            font-size: 12px;
+            background: #ffd9ec;
+            color: #cc6699;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        .back-home.show{
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-home:hover{
+            background: #ffb3d9;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="nav">
+    <a href="index.html">Sanrio Friends | 网站首页</a>
+    <a href="kitty.html">凯蒂猫</a>
+    <a href="melody.html" class="active">美乐蒂</a>
+    <a href="purin.html">布丁狗</a>
+    <a href="cinna.html">大耳狗</a>
+    <a href="kuromi.html">库洛米</a>
+    <a href="pochacco.html">帕恰狗</a>
+</div>
+
+<!-- 第一排 -->
+<div class="section-wrap bg-pink1">
+    <div class="container">
+        <div class="top-row">
+          <div class="left-card">
+                <img src="images/美乐蒂/7.jpg">
+                <h4>美乐蒂</h4>
+                <p>MY MELODY</p>
+          </div>
+            <div class="right-card">
+                <p>美乐蒂是戴着小红帽的温柔小兔子女孩。</p>
+                <p>她率真又开朗，最喜欢和妈妈一起做杏仁蛋糕。</p>
+                <p>特长是能和任何人立刻成为朋友。</p>
+                <p>小红帽是奶奶亲手缝制的，是她最珍贵的宝物。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 图片卡片 -->
+<div class="section-wrap bg-pink2">
+    <div class="container">
+        <div class="title-box">
+            <h3 class="title">可爱瞬间</h3>
+            <small>PHOTO GALLERY</small>
+        </div>
+      <div class="card-layout">
+            <!-- 第一行 -->
+            <div class="card-item">
+                <img src="images/美乐蒂/B.jpg">
+            </div>
+            <div class="card-item">
+                <img src="images/美乐蒂/5.png">
+            </div>
+            <div class="card-item">
+                <img src="images/美乐蒂/a.jpg">
+            </div>
+            <!-- 第二行 -->
+            <div class="card-item">
+                <img src="images/美乐蒂/11.jpg">
+            </div>
+            <div class="card-item">
+                <img src="images/美乐蒂/9.jpg">
+            </div>
+            <div class="card-item">
+                <img src="images/美乐蒂/4.jpg">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 角色特点 -->
+<div class="section-wrap bg-pink1">
+    <div class="container">
+        <div class="title-box">
+            <h3 class="title">角色特点</h3>
+            <small>ABOUT MELODY</small>
+        </div>
+        <div class="feature-box">
+            <div class="feature-left">
+                <div class="feature-desc">
+美乐蒂是一只永远8岁的可爱小兔子。<br>
+她率真开朗，对朋友非常友善，偶尔有点小急躁。<br>
+最珍惜奶奶亲手缝制的小红帽，走到哪里都戴着它。<br>
+喜欢和妈妈一起烘焙，尤其爱吃杏仁蛋糕。
+                </div>
+                <div class="info-table">
+                    <div class="table-row">
+                        <span class="label">中文名</span>
+                        <span class="val">美乐蒂</span>
+                        <span class="label">生　日</span>
+                        <span class="val">1月18日</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="label">外文名</span>
+                        <span class="val">My Melody</span>
+                        <span class="label">星　座</span>
+                        <span class="val">摩羯座</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="label">别　名</span>
+                        <span class="val">蒂蒂、My Melo</span>
+                        <span class="label">血　型</span>
+                        <span class="val">B型</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="label">性　别</span>
+                        <span class="val">女</span>
+                        <span class="label">创造者</span>
+                        <span class="val">三丽鸥</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="label">登场作品</span>
+                        <span class="val">奇幻魔法Melody等</span>
+                        <span class="label">诞生地</span>
+                        <span class="val">马里兰乐园森林</span>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-right">
+                <img src="images/美乐蒂/8.jpeg">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 角色生活 -->
+<div class="section-wrap bg-pink2">
+    <div class="container">
+        <div class="title-box">
+            <h3 class="title">角色生活</h3>
+            <small>LIFE DAILY</small>
+        </div>
+        <div class="life-section">
+            <div class="life-box">
+                <img src="images/美乐蒂/kv1.jpg">
+                <div class="life-text">
+                    🌸 家人：爸爸、妈妈、弟弟<br>
+                    🌸 宝物：奶奶缝制的小红帽<br>
+                    🌸 爱好：和妈妈一起烹饪烘焙
+              </div>
+          </div>
+            <div class="life-box">
+                <img src="images/美乐蒂/c.jpg">
+                <div class="life-text">
+                    🌸 朋友：弗兰多和森林里的动物们<br>
+                    🌸 特长：和任何人都能立刻成为朋友<br>
+                    🌸 最喜欢的食物：杏仁蛋糕
+              </div>
+          </div>
+            <div class="life-box">
+                <img src="images/美乐蒂/D.jpg">
+                <div class="life-text">
+                    🌸 魔法道具：旋律指挥棒、旋律盒<br>
+                    🌸 性格：率真开朗，偶尔有点小急躁<br>
+                    🌸 梦想：永远和家人朋友幸福地生活
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<!-- 回首页按钮 -->
+<a href="index.html" class="back-home">🏠 回首页</a>
+
+<script>
+// 滑到底显示回首页按钮
+document.addEventListener('DOMContentLoaded', function () {
+    var backBtn = document.querySelector('.back-home');
+    function checkScroll() {
+        var sTop = window.pageYOffset || document.documentElement.scrollTop;
+        var totalH = document.documentElement.scrollHeight;
+        var viewH = document.documentElement.clientHeight;
+        if(sTop + viewH >= totalH - 80){
+            backBtn.classList.add('show');
+        }else{
+            backBtn.classList.remove('show');
+        }
+    }
+    window.addEventListener('scroll', checkScroll);
+    checkScroll();
+});
+</script>
+</body>
+</html>

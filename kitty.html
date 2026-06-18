@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>凯蒂猫 - Hello Kitty</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            font-family:"微软雅黑",sans-serif;
+            background:#fff; /* 页面主背景改为纯白，让版块交替效果更明显 */
+        }
+        /*导航*/
+        .nav{
+            background:#ffd6e6;
+            padding:18px;
+            display:flex;
+            gap:45px;
+            justify-content:center;
+        }
+        .nav a{
+            color:#333;
+            text-decoration:none;
+            font-size:20px;
+        }
+        .nav a:hover{
+            color:#ff6699;
+        }
+        .nav a.active{
+            background:#ffadda;
+            padding:6px 12px;
+            border-radius:8px;
+            color:#222;
+        }
+        .container{
+            width:100%;
+            margin:0;
+        }
+        /* 为每个版块增加交替背景色的外层容器 */
+        .section{
+            padding:30px 0;
+        }
+        .section-odd{
+            background:#fff2f6; /* 浅粉色 */
+        }
+        .section-even{
+            background:#ffdfe8; /* 稍深一点的粉色 */
+        }
+        .section-inner{
+            width:92%;
+            max-width:1100px;
+            margin:0 auto;
+        }
+        .title{
+            font-size:30px;
+            color:#cc6699;
+            margin:0;
+            font-weight:bold;
+        }
+        .title-box{
+            text-align:center;
+            margin:35px 0 25px;
+        }
+        .title-box small{
+            display:block;
+            font-size:15px;
+            color:#dd88bb;
+            letter-spacing:3px;
+            margin-top:6px;
+            font-family:Arial;
+            font-weight:600;
+        }
+
+        /*顶部左右1:1区块*/
+        .top-row{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:22px;
+            margin-bottom:30px;
+        }
+        .left-card{
+            background:#fff0f6;
+            border-radius:10px;
+            padding:30px 20px;
+            text-align:center;
+        }
+        .left-card img{
+            width:70%;
+            display:block;
+            margin:0 auto 15px;
+        }
+        .left-card h4{
+            font-size:32px;
+            color:#cc6699;
+            margin-bottom:6px;
+        }
+        .left-card p{
+            font-size:20px;
+            color:#cc6699;
+        }
+        .right-card{
+            background:#fff0f6;
+            border-radius:10px;
+            padding:40px 35px;
+        }
+        .right-card p{
+            font-size:24px;
+            color:#cc6699;
+            white-space:nowrap;
+            line-height:2.2;
+            border-bottom:2px dashed #f7c2d0;
+            padding-bottom:12px;
+            text-align:center;
+        }
+
+        /* ===== 7:3布局 左文字7 右图片3 ===== */
+        .mag-box{
+            display:grid;
+            grid-template-columns:7fr 3fr;
+            gap:25px;
+            background:#fff0f6;
+            padding:28px;
+            border-radius:12px;
+            margin-bottom:30px;
+            align-items:center;
+        }
+        .mag-text{
+            font-size:18px;
+            line-height:1.8;
+            color:#444;
+            text-align: center;
+        }
+        .mag-img img{
+            width:90%;
+            border-radius:10px;
+            display:block;
+        }
+        .line{
+            border-bottom:1px dashed #ff88b8;
+            margin:18px 0;
+        }
+
+        /* 4张图片布局 */
+        .img-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .img-row img {
+            width: 23%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* 你要的样式：黑色不动，蓝色左移 */
+        .label{
+            display:inline-block;
+            width:90px;
+            color:#333;
+            text-align:left;
+			margin-left:5px;
+			margin-right:10px;
+            font-size: 17px;
+        }
+        .value{
+	display: inline-block;
+	width: 180px;
+	color: #FF80C0;
+	text-align: left;
+	margin-left: -3px;
+	font-size: 17px;
+        }
+
+        /* 下方双卡片 */
+        .mag-bottom{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:25px;
+        }
+        .mag-item{
+            display:grid;
+            grid-template-columns:3fr 7fr;
+            gap:18px;
+            background:#fff0f6;
+            padding:18px;
+            border-radius:10px;
+            align-items:center;
+        }
+        .mag-item-img img{
+            width:100%;
+            border-radius:8px;
+            display:block;
+        }
+        .mag-item-text{
+            font-size:16px;
+            line-height:1.8;
+            color:#444;
+            text-align:center;
+        }
+
+        /* ========== 人物关系 圆形展开（缩小间距，文字不遮挡） ========== */
+        .flower-section {
+            background: #fff0f6;
+            border-radius: 14px;
+            padding: 90px 20px;
+            text-align: center;
+            margin:0;
+            position: relative;
+            min-height: 550px;
+        }
+        /* 仅修改此处：标题左对齐，移到左上角 */
+        .flower-title {
+            font-size: 22px;
+            color: #cc6699;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-align: left;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            margin: 0;
+        }
+        .center-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: .3s ease;
+            z-index: 10;
+            object-fit: cover;
+            box-shadow: 0 2px 10px rgba(204, 102, 153, 0.4);
+        }
+        .center-img:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .flower-wrap {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.3, 1, 0.7, 1);
+            text-align: center;
+            width: 100px;
+            margin-left: -50px;
+        }
+        .flower-item {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            cursor: pointer;
+        }
+        .flower-name {
+            display: block;
+            margin-top: 6px;
+            font-size: 14px;
+            color: #cc6699;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .flower-section.show .flower-wrap { opacity:1; pointer-events:auto; }
+
+        /* 缩小了展开距离，防止文字被挡住 */
+        .wrap1 { transform: translate(-110px, -190px); }  
+        .wrap2 { transform: translate(110px, -190px); }  
+        .wrap3 { transform: translate(-190px, 0); }     
+        .wrap4 { transform: translate(190px, 0); }     
+        .wrap5 { transform: translate(-110px, 190px); }
+        .wrap6 { transform: translate(110px, 190px); } 
+        .detail-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            width: 340px;
+            z-index: 999;
+            display: none;
+        }
+        .detail-box h4 {
+            color: #cc6699;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        .detail-box p {
+            line-height: 1.7;
+            color: #555;
+            font-size: 15px;
+        }
+        .mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 998;
+            display: none;
+        }
+
+        /*回首页按钮*/
+        .back-home{
+            position: fixed;
+            right: 20px;
+            bottom: 12px;
+            padding: 5px 11px;
+            font-size:12px;
+            background:#ffecf5;
+            color:#b35982;
+            border-radius:20px;
+            text-decoration:none;
+            font-weight:bold;
+            box-shadow:0 2px 5px rgba(0,0,0,0.1);
+            opacity:0;
+            visibility:hidden;
+            transition:all 0.3s ease;
+            z-index:999;
+        }
+        .back-home.show{
+            opacity:1;
+            visibility:visible;
+        }
+        .back-home:hover{
+            background:#ffdcea;
+        }
+    </style>
+</head>
+
+<body>
+<div class="nav">
+    <a href="index.html">Sanrio Friends | 网站首页</a>
+    <a href="kitty.html" class="active">凯蒂猫</a>
+    <a href="melody.html">美乐蒂</a>
+    <a href="purin.html">布丁狗</a>
+    <a href="cinna.html">大耳狗</a>
+    <a href="kuromi.html">库洛米</a>
+    <a href="pochacco.html">帕恰狗</a>
+</div>
+
+<!-- 第1个版块：浅粉色背景 -->
+<div class="section section-odd">
+    <div class="section-inner">
+        <div class="top-row">
+            <div class="left-card">
+                <img src="images/凯蒂猫/4.jpeg">
+                <h4>凯蒂猫</h4>
+                <p>HELLO KITTY</p>
+            </div>
+            <div class="right-card">
+                <p>🎀 Hello Kitty是三丽鸥最具代表性的角色。</p>
+                <p>🎀 是左耳佩戴红色蝴蝶结、没有嘴巴的英国小女孩</p>
+                <p>🎀 她性格温柔贴心，最喜欢烘焙饼干与弹奏钢琴</p>
+                <p>🎀 爱好收集可爱蝴蝶结，闲暇和双胞胎妹妹散步</p>
+                <p>🎀 待人友善心软，很容易和大家成为好朋友</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 第2个版块：稍深粉色背景 -->
+<div class="section section-even">
+    <div class="section-inner">
+        <div class="title-box">
+            <h3 class="title">角色特点</h3>
+            <small>ABOUT KITTY</small>
+        </div>
+
+        <div class="mag-box">
+            <div class="mag-text">
+                <div class="img-row">
+                    <img src="images/凯蒂猫/5.jpg">
+                    <img src="images/凯蒂猫/11.jpeg">
+                    <img src="images/凯蒂猫/8.jpeg">
+                    <img src="images/凯蒂猫/b.jpg">
+                </div>
+                <div class="line"></div>
+                <p><span class="label">中文名</span><span class="value">凯蒂猫</span><span class="label">生　日</span><span class="value">1974年11月1日</span></p>
+                <p><span class="label">外文名</span><span class="value">Kitty White</span><span class="label">星　座</span><span class="value">天蝎座</span></p>
+                <p><span class="label">别　名</span><span class="value">凯蒂、吉蒂猫</span><span class="label">创造时间</span><span class="value">1974年</span></p>
+                <p><span class="label">性　别</span><span class="value">女</span><span class="label">创造者</span><span class="value">清水侑子</span></p>
+                <p><span class="label">登场作品</span><span class="value">日本三丽鸥系列作品</span><span class="label">创造国家</span><span class="value">日本</span></p>
+                <div class="line"></div>
+            </div>
+            <div class="mag-img">
+                <img src="images/凯蒂猫/9.jpeg" alt="Hello Kitty">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 第3个版块：浅粉色背景 -->
+<div class="section section-odd">
+    <div class="section-inner">
+        <div class="mag-bottom">
+            <div class="mag-item">
+                <div class="mag-item-img"><img src="images/凯蒂猫/q.jpg"></div>
+                <div class="mag-item-text">🎀 温柔善良：性格文静体贴，喜欢帮助朋友，是大家心中最温暖的小天使。待人谦和有礼，日常贴心懂事，深受家人与小伙伴喜爱。</div>
+            </div>
+            <div class="mag-item">
+                <div class="mag-item-img"><img src="images/凯蒂猫/f.jpg"></div>
+                <div class="mag-item-text">🎀 兴趣爱好：擅长弹钢琴、烤饼干，最爱苹果派，和妹妹咪咪一起快乐生活。闲暇会结伴出门散步、野餐，享受悠闲日常。</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 第4个版块：稍深粉色背景 -->
+<div class="section section-even">
+    <div class="section-inner">
+        <!-- 人物关系 圆形展开（文字不再被遮挡） -->
+        <div class="flower-section">
+            <div class="flower-title">人物关系图（点击展开）</div>
+            <img src="images/凯蒂猫/2.png" class="center-img">
+
+            <div class="flower-wrap wrap1">
+                <img src="images/凯蒂猫/祖父.png" class="flower-item" data-name="祖父 东尼·怀特(Antony White)">
+                <span class="flower-name">祖父 东尼·怀特</span>
+            </div>
+            <div class="flower-wrap wrap2">
+              <img src="images/凯蒂猫/祖母.png" class="flower-item" data-name="祖母 玛格丽特·怀特(Magaret White)">
+                <span class="flower-name">祖母 玛格丽特</span>
+            </div>
+            <div class="flower-wrap wrap3">
+              <img src="images/凯蒂猫/父亲.png" class="flower-item" data-name="父亲 乔治·怀特(George White)">
+                <span class="flower-name">父亲 乔治·怀特</span>
+            </div>
+            <div class="flower-wrap wrap4">
+              <img src="images/凯蒂猫/母亲.png" class="flower-item" data-name="母亲 玛丽·怀特(Mary White)">
+                <span class="flower-name">母亲 玛丽·怀特</span>
+            </div>
+            <div class="flower-wrap wrap5">
+              <img src="images/凯蒂猫/生成Kitty图片.png" class="flower-item" data-name="妹妹 咪咪(Mimmy)">
+                <span class="flower-name">妹妹 咪咪</span>
+            </div>
+            <div class="flower-wrap wrap6">
+              <img src="images/凯蒂猫/男朋友..png" class="flower-item" data-name="男朋友 丹尼尔·史塔(Daniel Star)">
+                <span class="flower-name">男朋友 丹尼尔</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mask"></div>
+<div class="detail-box">
+    <h4 id="detail-title"></h4>
+    <p id="detail-content"></p>
+</div>
+
+<a href="index.html" class="back-home">🏠 回首页</a>
+
+<script>
+const infoData = {
+    "祖父 东尼·怀特(Antony White)": "以知识渊博、多才多艺为特征，尤其擅长绘画和讲述有趣故事。他热衷于旅行采风，常随身携带画具进行创作。",
+    "祖母 玛格丽特·怀特(Magaret White)": "心灵手巧，擅长制作点心和编织饰品，厨艺出众，把家里打理得温馨又舒适。",
+    "父亲 乔治·怀特(George White)": "该角色定位为家庭成员中可靠的父亲形象，性格设定带有迷糊特质但具有突出的幽默感，在角色关系中明确作为Kitty的父亲存在。",
+    "母亲 玛丽·怀特(Mary White)": "温柔贤惠，擅长烹饪和家务，悉心照顾全家人的生活起居。",
+    "妹妹 咪咪(Mimmy)": "与Kitty外貌完全相同，但通过右耳佩戴的黄色蝴蝶结区分。性格内向文静，热爱家庭生活，擅长手工艺制作，常幻想成为幸福新娘。与活泼外向的Kitty形成互补。",
+    "男朋友 丹尼尔·史塔(Daniel Star)": "他性格精力旺盛、爱干净且会打扮，感情丰富易受感动。作为凯蒂的男友，丹尼尔全家因父亲工作迁居非洲，两人展开远距离恋爱，他定期寄信维系情感。"
+};
+
+const flowerBox = document.querySelector('.flower-section');
+const centerImg = document.querySelector('.center-img');
+const flowerItems = document.querySelectorAll('.flower-item');
+const mask = document.querySelector('.mask');
+const detailBox = document.querySelector('.detail-box');
+const detailTitle = document.getElementById('detail-title');
+const detailContent = document.getElementById('detail-content');
+
+centerImg.addEventListener('click', function(){
+    flowerBox.classList.toggle('show');
+    mask.style.display = 'none';
+    detailBox.style.display = 'none';
+});
+
+// 修正：把forEach改为for循环，去掉箭头函数
+for(var i = 0; i < flowerItems.length; i++){
+    flowerItems[i].addEventListener('click', function(){
+        var name = this.dataset.name;
+        detailTitle.innerText = name;
+        detailContent.innerText = infoData[name];
+        mask.style.display = 'block';
+        detailBox.style.display = 'block';
+    });
+}
+
+// 修正：去掉箭头函数
+mask.addEventListener('click', function(){
+    mask.style.display='none'; 
+    detailBox.style.display='none';
+});
+
+// 修正：把const改为var
+var backBtn = document.querySelector('.back-home');
+function checkScroll() {
+    var sTop = window.pageYOffset || document.documentElement.scrollTop;
+    var totalH = document.documentElement.scrollHeight;
+    var viewH = document.documentElement.clientHeight;
+    if(sTop + viewH >= totalH - 80){
+        backBtn.classList.add('show');
+    }else{
+        backBtn.classList.remove('show');
+    }
+}
+window.addEventListener('scroll', checkScroll);
+checkScroll();
+</script>
+</body>
+</html>

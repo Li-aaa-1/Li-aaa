@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>大耳狗 - Cinnamoroll</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            font-family:"微软雅黑",sans-serif;
+            background:#f0f8ff;
+        }
+        /*导航*/
+        .nav{
+            background:#e0f2fb;
+            padding:18px;
+            display:flex;
+            gap:45px;
+            justify-content:center;
+        }
+        .nav a{
+            color:#333;
+            text-decoration:none;
+            font-size:20px;
+        }
+        .nav a:hover{
+            color:#429cd8;
+        }
+        .nav a.active{
+            background:#99d3f2;
+            padding:6px 12px;
+            border-radius:8px;
+            color:#222;
+        }
+        .container{
+            width:92%;
+            max-width:1100px;
+            margin:30px auto;
+        }
+
+        /* 瀑布流布局 */
+        .waterfall{
+            display:grid;
+            grid-template-columns:repeat(4, 1fr);
+            grid-auto-rows:10px;
+            gap:12px;
+            margin:30px 0;
+        }
+        .waterfall img{
+            width:100%;
+            border-radius:10px;
+            object-fit:cover;
+        }
+        .item1{grid-row:span 14;}
+        .item2{grid-row:span 20;}
+        .item3{grid-row:span 16;}
+        .item4{grid-row:span 18;}
+        .item5{grid-row:span 22;}
+        .item6{grid-row:span 15;}
+        .item7{grid-row:span 19;}
+        .item8{grid-row:span 17;}
+
+        /* 标题样式 */
+        .title{
+            font-size:30px;
+            color:#3288bb;
+            margin:0;
+            font-weight:bold;
+        }
+        .title-box{
+            text-align:center;
+            margin:35px 0 15px;
+        }
+        .title-box small{
+            display:block;
+            font-size:15px;
+            color:#65a8cc;
+            letter-spacing:3px;
+            margin-top:6px;
+            font-family:Arial;
+            font-weight:600;
+        }
+
+        /* 第一排：左图 右文字 */
+        .top-row{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:22px;
+            margin-bottom:30px;
+        }
+        .left-card{
+            background:#ffffff;
+            border-radius:10px;
+            padding:30px 20px;
+            text-align:center;
+        }
+        .left-card img{
+            width:70%;
+            display:block;
+            margin:0 auto 15px;
+        }
+        .left-card h4{
+            font-size:32px;
+            color:#3288bb;
+            margin-bottom:6px;
+        }
+        .left-card p{
+            font-size:20px;
+            color:#3288bb;
+        }
+        .right-card{
+            background:#ffffff;
+            border-radius:10px;
+            padding:40px 35px;
+        }
+        .right-card p{
+            font-size:24px;
+            color:#3288bb;
+            white-space:nowrap;
+            line-height:2.2;
+            border-bottom:2px dashed #a5d2e9;
+            padding-bottom:12px;
+        }
+
+        /* 角色特点 */
+        .feature-box{
+            display:grid;
+            grid-template-columns:7fr 3fr;
+            gap:22px;
+            margin-bottom:30px;
+        }
+        .feature-left{
+            background:#ffffff;
+            border-radius:10px;
+            padding:25px;
+        }
+        .feature-desc{
+            font-size:17px;
+            line-height:1.8;
+            padding-bottom:18px;
+            border-bottom:2px dashed #a5d2e9;
+        }
+        .info-table{
+            margin-top:18px;
+        }
+        .table-row{
+            display:grid;
+            grid-template-columns:90px 1fr 90px 1fr;
+            padding:9px 0;
+            border-bottom:1px dashed #a5d2e9;
+            font-size:16px;
+        }
+        .table-row:last-child{
+            border-bottom:none;
+        }
+        .label{
+            color:#555;
+        }
+        .val{
+	color: #26B6CA;
+        }
+        .feature-right img{
+            width:100%;
+            border-radius:10px;
+            display:block;
+        }
+
+        /* 三栏布局：角色外形 + 日常生活 + 角色能力 */
+        .life-wrap{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:22px;
+            margin:30px 0;
+        }
+        .life-box{
+            background:#ffffff;
+            border-radius:10px;
+            overflow:hidden;
+        }
+        .life-box img{
+            width:100%;
+            display:block;
+        }
+        .life-text{
+            padding:20px;
+            font-size:16px;
+            line-height:2;
+        }
+
+        /* 人物关系四卡片 */
+        .friend-section{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:22px;
+            margin:30px 0;
+        }
+        .friend-box{
+            background:#ffffff;
+            border-radius:10px;
+            padding:25px 15px;
+            text-align:center;
+        }
+        .friend-img img{
+            width:130px;
+            height:130px;
+            object-fit:cover;
+            border-radius:50%;
+            margin:0 auto 15px;
+            display:block;
+            border:3px solid #e0f2fb;
+        }
+        .friend-box h4{
+            font-size:22px;
+            color:#3288bb;
+            margin-bottom:8px;
+        }
+        .friend-box p{
+            font-size:15px;
+            color:#444;
+            line-height:1.7;
+        }
+
+        /* 回首页按钮【缩小+靠下】 */
+        .back-index{
+            position:fixed;
+            right:20px;
+            bottom:12px;    /* 更靠底边 */
+            padding:5px 11px;/* 缩小按钮大小 */
+            font-size:12px;  /* 小字 */
+            background:#c6e6f7;
+            color:#222;
+            border-radius:20px;
+            text-decoration:none;
+            font-weight:bold;
+            box-shadow:0 2px 5px #cccccc;
+            opacity:0;
+            visibility:hidden;
+            transition:all 0.3s ease;
+            z-index:999;
+        }
+        .back-index.show{
+            opacity:1;
+            visibility:visible;
+        }
+        .back-index:hover{
+            background:#93d2f0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="nav">
+    <a href="index.html">Sanrio Friends | 网站首页</a>
+    <a href="kitty.html">凯蒂猫</a>
+    <a href="melody.html">美乐蒂</a>
+    <a href="purin.html">布丁狗</a>
+    <a href="cinna.html" class="active">大耳狗</a>
+    <a href="kuromi.html">库洛米</a>
+    <a href="pochacco.html">帕恰狗</a>
+</div>
+
+<div class="container">
+    <!-- 瀑布流图片区 -->
+    <div class="waterfall">
+        <img class="item1" src="images/大耳狗/a.jpg">
+        <img class="item2" src="images/大耳狗/5.jpg">
+        <img class="item3" src="images/大耳狗/1.jpg">
+        <img class="item4" src="images/大耳狗/4.jpeg">
+        <img class="item5" src="images/大耳狗/c.jpg">
+        <img class="item6" src="images/大耳狗/b.jpg">
+        <img class="item7" src="images/大耳狗/kv1.jpg">
+        <img class="item8" src="images/大耳狗/kv3.jpg">
+    </div>
+
+    <!-- 第一排 -->
+    <div class="top-row">
+        <div class="left-card">
+            <img src="images/大耳狗/6.jpeg">
+            <h4>大耳狗</h4>
+            <p>CINNAMOROLL</p>
+        </div>
+        <div class="right-card">
+            <p>遥远天空的白云之上诞生了一位白色小狗男孩。有一天，在喜拿</p>
+            <p>咖啡馆工作的大姐姐发现了从天空中轻飘飘飞来的大耳狗，就此开始</p>
+            <p>与之一起生活。因为大耳狗卷曲的尾巴就像肉桂卷（Cinnamon Roll）</p>
+            <p>一样，大姐姐为他起名 “喜拿”（Cinnamoroll）。</p>
+        </div>
+    </div>
+
+    <!-- 角色特点 -->
+    <div class="title-box">
+        <h3 class="title">角色特点</h3>
+        <small>ABOUT CINNA</small>
+    </div>
+    <div class="feature-box">
+        <div class="feature-left">
+            <div class="feature-desc">
+大耳狗诞生在天上的云朵之上，性格沉静腼腆、不爱多说话。<br>
+待人温和友善，喜欢依偎在客人腿上睡觉，乖巧又治愈。<br>
+标志性卷卷尾巴酷似肉桂卷，长耳朵是飞行的秘密武器。<br>
+作为肉桂咖啡馆招牌宠物，常年悠闲享受咖啡店日常时光。
+            </div>
+            <div class="info-table">
+                <div class="table-row">
+                    <span class="label">中文名</span>
+                    <span class="val">大耳狗</span>
+                    <span class="label">生　日</span>
+                    <span class="val">3月6日</span>
+                </div>
+                <div class="table-row">
+                    <span class="label">外文名</span>
+                    <span class="val">Cinnamon、Cinnamoroll</span>
+                    <span class="label">星　座</span>
+                    <span class="val">双鱼座</span>
+                </div>
+                <div class="table-row">
+                    <span class="label">别　名</span>
+                    <span class="val">玉桂狗、喜拿、肉桂狗</span>
+                    <span class="label">出生地</span>
+                    <span class="val">天空云朵之上</span>
+                </div>
+                <div class="table-row">
+                    <span class="label">性　别</span>
+                    <span class="val">男</span>
+                    <span class="label">创造者</span>
+                    <span class="val">奥村美幸</span>
+                </div>
+                <div class="table-row">
+                    <span class="label">登场作品</span>
+                    <span class="val">日本三丽鸥系列作品</span>
+                    <span class="label">创造时间</span>
+                    <span class="val">2001年</span>
+                </div>
+            </div>
+        </div>
+        <div class="feature-right">
+            <img src="images/大耳狗/2.jpeg">
+        </div>
+    </div>
+
+    <!-- 三栏卡片：外形 + 日常 + 能力 -->
+    <div class="life-wrap">
+        <div class="life-item">
+            <div class="title-box">
+                <h3 class="title">角色外形</h3>
+                <small>SHAPE FEATURE</small>
+            </div>
+            <div class="life-box">
+                <img src="images/大耳狗/3.jpeg">
+                <div class="life-text">
+                    🧊 通体雪白、大垂耳<br>
+                    🧊 特征：卷曲肉桂状尾巴
+                </div>
+            </div>
+        </div>
+        <div class="life-item">
+            <div class="title-box">
+                <h3 class="title">日常生活</h3>
+                <small>DAILY LIFE</small>
+            </div>
+            <div class="life-box">
+                <img src="images/大耳狗/0.png">
+                <div class="life-text">
+                    🧊 住所：喜拿肉桂咖啡馆<br>
+                    🧊 最爱美食：肉桂卷<br>
+                    🧊 习惯：咖啡店凉台午睡
+                </div>
+            </div>
+        </div>
+        <div class="life-item">
+            <div class="title-box">
+                <h3 class="title">角色能力</h3>
+                <small>SPECIAL ABILITY</small>
+            </div>
+            <div class="life-box">
+                <img src="images/大耳狗/7.jpeg">
+                <div class="life-text">
+                    🧊 特长：扇动耳朵在空中飞行<br>
+                    🧊 闲暇：在云朵上空自由游玩
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 人物关系 -->
+    <div class="title-box">
+        <h3 class="title">人物关系</h3>
+        <small>FRIENDS LIST</small>
+    </div>
+    <div class="friend-section">
+        <div class="friend-box">
+            <div class="friend-img">
+                <img src="images/大耳狗/卡布奇诺..png">
+            </div>
+            <h4>卡布奇诺</h4>
+            <p>男</p>
+          <p>喜欢悠闲自在地在屋里午睡。是个好吃的小狗仔，也是大耳狗最好的朋友</p>
+        </div>
+        <div class="friend-box">
+            <div class="friend-img">
+                <img src="images/大耳狗/摩卡.png">
+            </div>
+            <h4>摩卡</h4>
+            <p>女</p>
+          <p>好打扮爱聊天，很温柔会照顾他人，在这群朋友内扮演大姐的角色。</p>
+        </div>
+        <div class="friend-box">
+            <div class="friend-img">
+                <img src="images/大耳狗/缪克.png">
+            </div>
+            <h4>缪克(Milk)</h4>
+            <p>女</p>
+            <p>喜爱吸著奶嘴，一被拿掉奶嘴马上会哭。时常撒娇的她，非常喜爱大耳狗，希望自己有一天能像大耳狗那样地在天空飞。</p>
+        </div>
+        <div class="friend-box">
+            <div class="friend-img">
+                <img src="images/大耳狗/波隆.png">
+            </div>
+            <h4>波隆(Poron)</h4>
+            <p>女</p>
+          <p>神秘小狗,像云一样柔软的耳朵和天蓝色的丝带是魅力点。有着和肉桂一样的蓝色眼睛。</p>
+        </div>
+    </div>
+</div>
+
+<!-- 返回首页按钮 -->
+<a href="index.html" class="back-index">🏠回首页</a>
+
+<script>
+//等待页面DOM全部加载完成再执行代码，解决找不到元素报错
+//等待页面DOM全部加载完成再执行代码，解决找不到元素报错
+document.addEventListener('DOMContentLoaded',function(){
+    var backBtn = document.querySelector('.back-index');
+    //全浏览器通用滚动取值
+    function checkScroll(){
+        var scrollTop = window.pageYOffset;
+        var totalHeight = document.documentElement.scrollHeight;
+        var viewHeight = document.documentElement.clientHeight;
+        //距离底部80px弹出按钮
+        if(scrollTop + viewHeight >= totalHeight - 80){
+            backBtn.classList.add('show');
+        }else{
+            backBtn.classList.remove('show');
+        }
+    }
+    window.addEventListener('scroll',checkScroll);
+    checkScroll();
+})
+</script>
+</body>
+</html>

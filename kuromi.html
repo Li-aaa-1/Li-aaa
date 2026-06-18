@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>库洛米 - Kuromi</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            font-family:"微软雅黑",sans-serif;
+            background:#fff;
+        }
+        /*导航*/
+        .nav{
+            background:#e9dff5;
+            padding:18px;
+            display:flex;
+            gap:45px;
+            justify-content:center;
+        }
+        .nav a{
+            color:#333;
+            text-decoration:none;
+            font-size:20px;
+        }
+        .nav a:hover{
+            color:#9955cc;
+        }
+        .nav a.active{
+            background:#c9b2e3;
+            padding:6px 12px;
+            border-radius:8px;
+            color:#222;
+        }
+        .container{
+            width:100%;
+            margin:0;
+        }
+        /* 版块交替背景外层容器 */
+        .section{
+            padding:30px 0;
+        }
+        .section-odd{
+            background:#f6f0fc; /* 浅淡紫底色 */
+        }
+        .section-even{
+            background:#e9dff5; /* 稍深淡紫底色 */
+        }
+        .section-inner{
+            width:92%;
+            max-width:1100px;
+            margin:0 auto;
+        }
+        .title{
+            font-size:30px;
+            color:#8844bb;
+            margin:0;
+            font-weight:bold;
+        }
+        .title-box{
+            text-align:center;
+            margin:35px 0 25px;
+        }
+        .title-box small{
+            display:block;
+            font-size:15px;
+            color:#aa77cc;
+            letter-spacing:3px;
+            margin-top:6px;
+            font-family:Arial;
+            font-weight:600;
+        }
+
+        /*顶部左右1:1区块*/
+        .top-row{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:22px;
+            margin-bottom:30px;
+        }
+        .left-card{
+            background:#f3eafb;
+            border-radius:10px;
+            padding:30px 20px;
+            text-align:center;
+        }
+        .left-card img{
+            width:70%;
+            display:block;
+            margin:0 auto 15px;
+        }
+        .left-card h4{
+            font-size:32px;
+            color:#8844bb;
+            margin-bottom:6px;
+        }
+        .left-card p{
+            font-size:20px;
+            color:#8844bb;
+        }
+        .right-card{
+            background:#f3eafb;
+            border-radius:10px;
+            padding:40px 35px;
+        }
+        .right-card p{
+            font-size:24px;
+            color:#8844bb;
+            white-space:nowrap;
+            line-height:2.2;
+            border-bottom:2px dashed #d2b8ee;
+            padding-bottom:12px;
+            text-align:center;
+        }
+
+        /* ===== 7:3布局 左文字7 右图片3 ===== */
+        .mag-box{
+            display:grid;
+            grid-template-columns:7fr 3fr;
+            gap:25px;
+            background:#f3eafb;
+            padding:28px;
+            border-radius:12px;
+            margin-bottom:30px;
+            align-items:center;
+        }
+        .mag-text{
+            font-size:18px;
+            line-height:1.8;
+            color:#444;
+            text-align: center;
+        }
+        .mag-img img{
+            width:90%;
+            border-radius:10px;
+            display:block;
+        }
+        .line{
+            border-bottom:1px dashed #b988e0;
+            margin:18px 0;
+        }
+
+        /* 4张图片布局 */
+        .img-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .img-row img {
+            width: 23%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* 表格文字样式：label黑色，value紫色 */
+        .label{
+            display:inline-block;
+            width:90px;
+            color:#333;
+            text-align:left;
+			margin-left:5px;
+			margin-right:10px;
+            font-size: 17px;
+        }
+        .value{
+	        display: inline-block;
+	        width: 180px;
+	        color: #9955dd;
+	        text-align: left;
+	        margin-left: -3px;
+	        font-size: 17px;
+        }
+
+        /* ========= 角色生活 三栏卡片布局 ========= */
+        .life-section{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:22px;
+        }
+        .life-box{
+            background:#f3eafb;
+            border-radius:10px;
+            overflow:hidden;
+        }
+        .life-box img{
+            width:100%;
+            display:block;
+        }
+        .life-text{
+            padding:20px;
+            font-size:16px;
+            line-height:2;
+        }
+
+        /* ========== 人物关系 仅3张拱形卡片，自适应高度刚好包裹内容 ========== */
+        .relation-wrap {
+            position: relative;
+            overflow: hidden;
+            background: #f3eafb;
+            border-radius: 14px;
+            padding: 35px 0;
+        }
+        .relation-title {
+            font-size: 22px;
+            color:#8844bb;
+            margin:0 auto 30px;
+            font-weight: bold;
+            text-align:center;
+        }
+        /* 可视容器 */
+        .relation-view{
+            width: 45%;
+            margin:0 auto;
+            overflow: hidden;
+        }
+        .relation-container {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+        }
+        /* 单张卡片占满可视宽度 */
+        .relation-card {
+            flex: 0 0 100%;
+            padding:0 10px;
+        }
+        /* 高度自适应，刚好包裹图片+文字内容 */
+        .card-inner{
+            background:#ffffff;
+            border-radius: 50% 50% 16px 16px / 150px 150px 16px 16px;
+            padding: 60px 30px 40px;
+            text-align:center;
+            box-shadow:0 2px 8px rgba(136, 68, 187, 0.12);
+        }
+        /* 拱形区域圆形头像 */
+        .card-avatar{
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #e9dff5;
+            margin: 0 auto 20px;
+            display:block;
+        }
+        /* 标题 */
+        .relation-name {
+            font-size: 22px;
+            color: #8844bb;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+        /* 描述文字 */
+        .relation-desc{
+            font-size: 16px;
+            color: #444;
+            line-height: 1.8;
+            padding: 0 15px;
+            text-align: justify;
+        }
+        /* 左右箭头紧贴卡片两侧 */
+        .arrow-left, .arrow-right {
+            position: absolute;
+            top: 58%;
+            transform: translateY(-50%);
+            background:transparent;
+            border:none;
+            font-size:38px;
+            color:#8844bb;
+            cursor:pointer;
+            z-index:5;
+        }
+        .arrow-left { left: 12%; }
+        .arrow-right { right: 12%; }
+
+        /*回首页按钮*/
+        .back-home{
+            position: fixed;
+            right: 20px;
+            bottom: 12px;
+            padding: 5px 11px;
+            font-size:12px;
+            background:#ede4f7;
+            color:#7744aa;
+            border-radius:20px;
+            text-decoration:none;
+            font-weight:bold;
+            box-shadow:0 2px 5px rgba(0,0,0,0.1);
+            opacity:0;
+            visibility:hidden;
+            transition:all 0.3s ease;
+            z-index:999;
+        }
+        .back-home.show{
+            opacity:1;
+            visibility:visible;
+        }
+        .back-home:hover{
+            background:#dcccee;
+        }
+    </style>
+</head>
+
+<body>
+<div class="nav">
+    <a href="index.html">Sanrio Friends | 网站首页</a>
+    <a href="kitty.html">凯蒂猫</a>
+    <a href="melody.html">美乐蒂</a>
+    <a href="purin.html">布丁狗</a>
+    <a href="cinna.html">大耳狗</a>
+    <a href="kuromi.html" class="active">库洛米</a>
+    <a href="pochacco.html">帕恰狗</a>
+</div>
+
+<!-- 第1个版块：浅紫背景 -->
+<div class="section section-odd">
+    <div class="section-inner">
+        <div class="top-row">
+            <div class="left-card">
+                <img src="images/库洛米/1.png">
+                <h4>库洛米</h4>
+                <p>KUROMI</p>
+          </div>
+            <div class="right-card">
+                <p>自称是美乐蒂一辈子的宿敌。</p>
+                <p>虽然看起来大大咧咧，但其实特别有少女情怀。</p>
+                <p>超~喜欢帅气的人。魅力点是黑色头巾和粉色骷髅。</p>
+                <p>爱好是写日记，最近还迷上了恋爱小说</p>
+                <p>嘴硬心软，别扭又渴望真挚的友情。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 第2个版块：稍深紫背景 -->
+<div class="section section-even">
+    <div class="section-inner">
+        <div class="title-box">
+            <h3 class="title">角色特点</h3>
+            <small>ABOUT KUROMI</small>
+        </div>
+
+        <div class="mag-box">
+            <div class="mag-text">
+                <div class="img-row">
+                    <img src="images/库洛米/4.jpeg">
+                    <img src="images/库洛米/6.jpeg">
+                    <img src="images/库洛米/8.jpeg">
+                    <img src="images/库洛米/d1 (1).png">
+                </div>
+                <div class="line"></div>
+                <p><span class="label">中文名</span><span class="value">库洛米</span><span class="label">生　日</span><span class="value">2005年10月31日</span></p>
+                <p><span class="label">外文名</span><span class="value">Kuromi</span><span class="label">星　座</span><span class="value">天蝎座</span></p>
+                <p><span class="label">别　名</span><span class="value">可梦美</span><span class="label">登场作品</span><span class="value">奇幻魔法Melody系列</span></p>
+                <p><span class="label">配　音</span><span class="value">竹内顺子(日本)</span><span class="label">关　系</span><span class="value">美乐蒂对手</span></p>
+                <p><span class="label">性　别</span><span class="value">女</span><span class="label">部　下</span><span class="value">巴库</span></p>
+                <div class="line"></div>
+            </div>
+            <div class="mag-img">
+                <img src="images/库洛米/kv1 (1).jpg" alt="库洛米设定图">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 第3个版块：浅紫背景【角色生活】 -->
+<div class="section section-odd">
+    <div class="section-inner">
+        <div class="title-box">
+            <h3 class="title">角色生活</h3>
+            <small>LIFE DAILY</small>
+        </div>
+        <div class="life-section">
+            <div class="life-box">
+                <img src="images/库洛米/2.jpg">
+                <div class="life-text">
+                    💜 家人：爸爸、妈妈、妹妹<br>
+                    💜 标志性装扮：黑色头巾+额头粉色骷髅<br>
+                    💜 性格底色：别扭傲娇，内心敏感柔软
+              </div>
+          </div>
+            <div class="life-box">
+                <img src="images/库洛米/7.jpeg">
+                <div class="life-text">
+                    💜 挚友&宿敌：美乐蒂<br>
+                    💜 忠心部下：食梦兽巴库<br>
+                    💜 暗恋对象：小提琴手柊惠一
+              </div>
+          </div>
+            <div class="life-box">
+                <img src="images/库洛米/10.jpeg">
+                <div class="life-text">
+                    💜 专属笔记：Kuromi日记记录本<br>
+                    💜 爱好：写恋爱小说、收集黑色音符<br>
+                    💜 喜好：偏爱黑色，爱吃红葱与肉类
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<!-- 第4个版块：稍深紫背景【人际关系 仅3张卡片，自适应高度包裹内容】 -->
+<div class="section section-even">
+    <div class="section-inner">
+        <div class="relation-wrap">
+            <div class="relation-title">人际关系</div>
+            <button class="arrow-left">&lt;</button>
+            <button class="arrow-right">&gt;</button>
+            <div class="relation-view">
+                <div class="relation-container">
+                    <!-- 卡片1：与美乐蒂的对立关系 -->
+                    <div class="relation-card">
+                        <div class="card-inner">
+                            <img class="card-avatar" src="images/库洛米/5.jpeg">
+                            <div class="relation-name">与美乐蒂的对立关系</div>
+                            <div class="relation-desc">
+                                酷洛米和美乐蒂是《奇幻魔法Melody》中的主要角色，她们之间的关系是对手关系。库洛米经常受到美乐蒂无意的欺负，因此视美乐蒂为仇人，而美乐蒂对此毫不知情。尽管她们在设定上看起来水火不容，但实际上她们小时候是朋友关系，由于酷洛米在无意识的行为中受到美乐蒂的欺负，逐渐视美乐蒂为仇人。
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 卡片2：与巴库的助手关系 -->
+                    <div class="relation-card">
+                        <div class="card-inner">
+                            <img class="card-avatar" src="images/库洛米/b.jpg">
+                            <div class="relation-name">与巴库的助手关系</div>
+                            <div class="relation-desc">
+                                酷洛米有一位名叫巴库的助手，它是一只貘，非常忠诚于库洛米。巴库经常被库洛米拳打脚踢，但依然忠心耿耿，帮助酷洛米收集黑色音符。
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 卡片3：与人类世界的关系 -->
+                    <div class="relation-card">
+                        <div class="card-inner">
+                            <img class="card-avatar" src="images/库洛米/11.jpeg">
+                            <div class="relation-name">与人类世界的关系</div>
+                            <div class="relation-desc">
+                                酷洛米因为调皮捣蛋的行为被判入反省室，后来逃狱来到人类世界，成为马里兰乐园的通缉犯。她在人类世界中继续她的恶作剧，同时也与美乐蒂展开了对抗。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="index.html" class="back-home">🏠 回首页</a>
+
+<script>
+// 单张卡片切换逻辑
+const container = document.querySelector('.relation-container');
+const leftBtn = document.querySelector('.arrow-left');
+const rightBtn = document.querySelector('.arrow-right');
+const cards = document.querySelectorAll('.relation-card');
+let currentIndex = 0;
+const total = cards.length;
+
+function updateSlide(){
+    container.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+rightBtn.addEventListener('click', ()=>{
+    if(currentIndex < total - 1){
+        currentIndex++;
+        updateSlide();
+    }
+})
+leftBtn.addEventListener('click', ()=>{
+    if(currentIndex > 0){
+        currentIndex--;
+        updateSlide();
+    }
+})
+
+// 回顶部按钮逻辑不变
+var backBtn = document.querySelector('.back-home');
+function checkScroll() {
+    var sTop = window.pageYOffset || document.documentElement.scrollTop;
+    var totalH = document.documentElement.scrollHeight;
+    var viewH = document.documentElement.clientHeight;
+    if(sTop + viewH >= totalH - 80){
+        backBtn.classList.add('show');
+    }else{
+        backBtn.classList.remove('show');
+    }
+}
+window.addEventListener('scroll', checkScroll);
+checkScroll();
+</script>
+</body>
+</html>

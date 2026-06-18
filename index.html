@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>三丽鸥家族首页</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+            background:#fff;
+            font-family:"微软雅黑",sans-serif;
+        }
+        /* 导航栏：粉色背景 + 白色文字 */
+        .nav{
+            background:#f8bbd0;
+            padding:18px;
+            display:flex;
+            gap:45px;
+            justify-content:center;
+        }
+        .nav a{
+            color:#ffffff; /* 导航文字白色 */
+            text-decoration:none;
+            font-size:20px;
+        }
+        .nav a:hover{
+            color:#ff4d88;
+        }
+
+        /* 轮播图样式 */
+        .slide-box{
+          width:65%;
+          margin:25px auto 15px;
+          border-radius:14px;
+          overflow:hidden;
+          position:relative;
+        }
+        .slide-wrap{
+          width:500%;
+          display:flex;
+          transition:0.5s ease;
+        }
+        .slide-wrap img{
+          width:20%;
+          display:block;
+        }
+        .dot-group{
+          position:absolute;
+          bottom:12px;
+          left:50%;
+          transform:translateX(-50%);
+          display:flex;
+          gap:10px;
+        }
+        .dot{
+          width:12px;
+          height:12px;
+          border-radius:50%;
+          background:#ddd;
+          cursor:pointer;
+        }
+        .dot.active{
+          background:#ff89b0;
+        }
+
+        /* banner下方说明文字 */
+        .banner-text{
+            text-align:center;
+            font-size:24px;
+            color:#444;
+            line-height:1.8;
+            margin-bottom:35px;
+        }
+        /* 卡片整体容器 2行3列布局 */
+/* 卡片整体容器 2行3列布局 —— 缩小间距 */
+.card-box{
+    width: 85%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 22px; /* 变小间距 */
+}
+/* 单张卡片样式 —— 整体缩小 */
+.card{
+    border-radius:16px;
+    padding: 14px 10px; /* 缩小内边距 */
+    text-align:center;
+    cursor:pointer;
+    border:3px solid transparent;
+    transition:0.3s all;
+    box-shadow:0 2px 8px #eee;
+}
+/* 卡片图片缩小 */
+.card img{
+    width:72%;
+    height: 180px; /* 高度变小 */
+    object-fit:contain;
+}
+/* 鼠标悬浮时显示边框 → 比底色深一点 */
+.kitty:hover{border-color:#f298b0;}
+.melody:hover{border-color:#f7d2dd;}
+.kuromi:hover{border-color:#d9cbe9;}
+.cinna:hover{border-color:#bddbed;}
+.purin:hover{border-color:#f7e6a0;}
+.pochacco:hover{border-color:#d1e2b0;}
+
+/* 点击选中状态 */
+.kitty.active{border-color:#f298b0;}
+.melody.active{border-color:#f7d2dd;}
+.kuromi.active{border-color:#d9cbe9;}
+.cinna.active{border-color:#bddbed;}
+.purin.active{border-color:#f7e6a0;}
+.pochacco.active{border-color:#d1e2b0;}
+
+        /* 角色背景色（按你要求修改） */
+        .kitty{background:#ffbdcf;}      /* 凯蒂猫：蜜桃粉 */
+        .melody{background:#fff0f5;}     /* 美乐蒂：淡粉色 */
+        .kuromi{background:#f3eef9;}
+        .cinna{background:#e6f5fd;}
+        .purin{background:#fffbd9;}
+        .pochacco{background:#f1f9dd;}
+
+        .card img{
+            width:80%;
+            height:220px;
+            object-fit:contain;
+        }
+        .card .cn-name{
+            font-size:22px;
+            margin:6px 0;
+        }
+        .card .en-name{
+            font-size:28px;
+            margin:10px 0;
+            font-weight:bold;
+            color:#222;
+        }
+        .card .desc{
+            font-size:16px;
+            color:#555;
+        }
+    </style>
+</head>
+<body>
+    <!--导航栏-->
+    <div class="nav">
+        <a href="index.html">Sanrio Friends | 网站首页</a>
+        <a href="kitty.html">凯蒂猫</a>
+        <a href="melody.html">美乐蒂</a>
+        <a href="purin.html">布丁狗</a>
+        <a href="cinna.html">大耳狗</a>
+        <a href="kuromi.html">库洛米</a>
+        <a href="pochacco.html">帕恰狗</a>
+    </div>
+
+    <!-- 轮播图（5张轮换 + 小圆点）-->
+    <div class="slide-box">
+      <div class="slide-wrap" id="slide">
+        <img src="images/全家福/1.png">
+        <img src="images/全家福/2.png">
+        <img src="images/全家福/3.png">
+        <img src="images/全家福/4.png">
+        <img src="images/全家福/5.png">
+      </div>
+      <div class="dot-group">
+        <div class="dot active" onclick="change(0)"></div>
+        <div class="dot" onclick="change(1)"></div>
+        <div class="dot" onclick="change(2)"></div>
+        <div class="dot" onclick="change(3)"></div>
+        <div class="dot" onclick="change(4)"></div>
+      </div>
+    </div>
+
+    <!--banner下方文字-->
+    <div class="banner-text">
+        每一个角色都有独特的魅力，陪伴你的日常<br>
+        三丽鸥家族成员
+    </div>
+
+    <!--6张角色卡片-->
+    <div class="card-box">
+        <!--凯蒂猫-->
+        <div class="card kitty" onclick="clickCard(this,'kitty.html')">
+            <img src="images/凯蒂猫/kitty.png" alt="凯蒂猫">
+            <div class="cn-name">凯蒂猫</div>
+            <div class="en-name">Hello Kitty</div>
+            <div class="desc">温柔可爱，热爱烘焙与钢琴</div>
+      </div>
+        <!--美乐蒂-->
+        <div class="card melody" onclick="clickCard(this,'melody.html')">
+            <img src="images/美乐蒂/d1.png" alt="美乐蒂">
+            <div class="cn-name">美乐蒂</div>
+            <div class="en-name">My Melody</div>
+            <div class="desc">温柔小兔子，最爱唱歌与蛋糕</div>
+      </div>
+        <!--库洛米-->
+        <div class="card kuromi" onclick="clickCard(this,'kuromi.html')">
+            <img src="images/库洛米/d1 (1).png" alt="库洛米">
+            <div class="cn-name">酷洛米</div>
+            <div class="en-name">Kuromi</div>
+            <div class="desc">傲娇小恶魔，爱写恋爱日记</div>
+      </div>
+        <!--玉桂狗-->
+        <div class="card cinna" onclick="clickCard(this,'cinna.html')">
+            <img src="images/大耳狗/d1 (1).png" alt="玉桂狗">
+            <div class="cn-name">大耳狗</div>
+            <div class="en-name">Cinnamoroll</div>
+            <div class="desc">大耳朵天使，能飞的治愈小狗</div>
+      </div>
+        <!--布丁狗-->
+        <div class="card purin" onclick="clickCard(this,'purin.html')">
+            <img src="images/布丁狗/d1.png" alt="布丁狗">
+            <div class="cn-name">布丁狗</div>
+            <div class="en-name">Pompompurin</div>
+            <div class="desc">爱吃布丁，悠闲自在的金毛</div>
+      </div>
+        <!--帕恰狗-->
+        <div class="card pochacco" onclick="clickCard(this,'pochacco.html')">
+            <img src="images/帕恰狗/d1.png" alt="帕恰狗">
+            <div class="cn-name">帕恰狗</div>
+            <div class="en-name">Pochacco</div>
+            <div class="desc">运动健将，活泼可爱小白狗</div>
+      </div>
+    </div>
+
+<script>
+function clickCard(el, url) {
+    var cards = document.querySelectorAll('.card');
+    for(var i=0; i<cards.length; i++){
+        cards[i].classList.remove('active');
+    }
+    el.classList.add('active');
+    setTimeout(function() {
+        location.href = url;
+    }, 350);
+}
+
+// 轮播切换功能
+var slide=document.getElementById('slide');
+var dots=document.querySelectorAll('.dot');
+var index = 0;
+var timer = null;
+
+function change(index) {
+  slide.style.transform = 'translateX(' + (-index*20) + '%)';
+  for(var i=0;i<dots.length;i++){
+      dots[i].classList.remove('active');
+  }
+  dots[index].classList.add('active');
+}
+
+//自动播放
+function auto() {
+    index++;
+    if(index>4) index=0;
+    change(index);
+}
+timer = setInterval(auto,2000);
+</script>
+</body>
+</html>
