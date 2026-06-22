@@ -13,7 +13,8 @@
             font-family:"微软雅黑",sans-serif;
             background:#fff;
         }
-        /*导航*/
+
+        /* 顶部导航栏样式 */
         .nav{
             background:#e9dff5;
             padding:18px;
@@ -39,15 +40,14 @@
             width:100%;
             margin:0;
         }
-        /* 版块交替背景外层容器 */
         .section{
             padding:30px 0;
         }
         .section-odd{
-            background:#f6f0fc; /* 浅淡紫底色 */
+            background:#f6f0fc;
         }
         .section-even{
-            background:#e9dff5; /* 稍深淡紫底色 */
+            background:#e9dff5; 
         }
         .section-inner{
             width:92%;
@@ -74,7 +74,7 @@
             font-weight:600;
         }
 
-        /*顶部左右1:1区块*/
+        /* 首区域 左右1:1图文布局 */
         .top-row{
             display:grid;
             grid-template-columns:1fr 1fr;
@@ -116,7 +116,7 @@
             text-align:center;
         }
 
-        /* ===== 7:3布局 左文字7 右图片3 ===== */
+        /*  7:3布局 左文字7 右图片3  */
         .mag-box{
             display:grid;
             grid-template-columns:7fr 3fr;
@@ -142,8 +142,6 @@
             border-bottom:1px dashed #b988e0;
             margin:18px 0;
         }
-
-        /* 4张图片布局 */
         .img-row {
             display: flex;
             justify-content: space-between;
@@ -153,11 +151,10 @@
         .img-row img {
             width: 23%;
             height: 180px;
+
             object-fit: cover;
             border-radius: 8px;
         }
-
-        /* 表格文字样式：label黑色，value紫色 */
         .label{
             display:inline-block;
             width:90px;
@@ -176,7 +173,7 @@
 	        font-size: 17px;
         }
 
-        /* ========= 角色生活 三栏卡片布局 ========= */
+        /* 角色生活 三栏卡片布局  */
         .life-section{
             display:grid;
             grid-template-columns:repeat(3,1fr);
@@ -197,7 +194,7 @@
             line-height:2;
         }
 
-        /* ========== 人物关系 仅3张拱形卡片，自适应高度刚好包裹内容 ========== */
+        /* 左右滑动人际关系卡片模块 */
         .relation-wrap {
             position: relative;
             overflow: hidden;
@@ -212,7 +209,6 @@
             font-weight: bold;
             text-align:center;
         }
-        /* 可视容器 */
         .relation-view{
             width: 45%;
             margin:0 auto;
@@ -222,12 +218,11 @@
             display: flex;
             transition: transform 0.4s ease-in-out;
         }
-        /* 单张卡片占满可视宽度 */
         .relation-card {
             flex: 0 0 100%;
             padding:0 10px;
         }
-        /* 高度自适应，刚好包裹图片+文字内容 */
+        /* 拱形卡片容器，高度自适应包裹内容 */
         .card-inner{
             background:#ffffff;
             border-radius: 50% 50% 16px 16px / 150px 150px 16px 16px;
@@ -245,14 +240,13 @@
             margin: 0 auto 20px;
             display:block;
         }
-        /* 标题 */
+        /* 卡片标题 */
         .relation-name {
             font-size: 22px;
             color: #8844bb;
             font-weight: bold;
             margin-bottom: 18px;
         }
-        /* 描述文字 */
         .relation-desc{
             font-size: 16px;
             color: #444;
@@ -260,7 +254,6 @@
             padding: 0 15px;
             text-align: justify;
         }
-        /* 左右箭头紧贴卡片两侧 */
         .arrow-left, .arrow-right {
             position: absolute;
             top: 58%;
@@ -275,7 +268,7 @@
         .arrow-left { left: 12%; }
         .arrow-right { right: 12%; }
 
-        /*回首页按钮*/
+        /* 右下角返回首页悬浮按钮 */
         .back-home{
             position: fixed;
             right: 20px;
@@ -304,190 +297,191 @@
 </head>
 
 <body>
-<div class="nav">
-    <a href="index.html">Sanrio Friends | 网站首页</a>
-    <a href="kitty.html">凯蒂猫</a>
-    <a href="melody.html">美乐蒂</a>
-    <a href="purin.html">布丁狗</a>
-    <a href="cinna.html">大耳狗</a>
-    <a href="kuromi.html" class="active">库洛米</a>
-    <a href="pochacco.html">帕恰狗</a>
-</div>
-
-<!-- 第1个版块：浅紫背景 -->
-<div class="section section-odd">
-    <div class="section-inner">
-        <div class="top-row">
-            <div class="left-card">
-                <img src="images/库洛米/1.png">
-                <h4>库洛米</h4>
-                <p>KUROMI</p>
-          </div>
-            <div class="right-card">
-                <p>自称是美乐蒂一辈子的宿敌。</p>
-                <p>虽然看起来大大咧咧，但其实特别有少女情怀。</p>
-                <p>超~喜欢帅气的人。魅力点是黑色头巾和粉色骷髅。</p>
-                <p>爱好是写日记，最近还迷上了恋爱小说</p>
-                <p>嘴硬心软，别扭又渴望真挚的友情。</p>
-            </div>
-        </div>
+    <!-- 页面顶部导航栏 -->
+    <div class="nav">
+        <a href="index.html">Sanrio Friends | 网站首页</a>
+        <a href="kitty.html">凯蒂猫</a>
+        <a href="melody.html">美乐蒂</a>
+        <a href="purin.html">布丁狗</a>
+        <a href="cinna.html">大耳狗</a>
+        <a href="kuromi.html" class="active">库洛米</a>
+        <a href="pochacco.html">帕恰狗</a>
     </div>
-</div>
 
-<!-- 第2个版块：稍深紫背景 -->
-<div class="section section-even">
-    <div class="section-inner">
-        <div class="title-box">
-            <h3 class="title">角色特点</h3>
-            <small>ABOUT KUROMI</small>
-        </div>
-
-        <div class="mag-box">
-            <div class="mag-text">
-                <div class="img-row">
-                    <img src="images/库洛米/4.jpeg">
-                    <img src="images/库洛米/6.jpeg">
-                    <img src="images/库洛米/8.jpeg">
-                    <img src="images/库洛米/d1 (1).png">
+    <!-- 第1个版块：浅紫背景 角色头部简介 -->
+    <div class="section section-odd">
+        <div class="section-inner">
+            <div class="top-row">
+                <div class="left-card">
+                    <img src="images/库洛米/1.png">
+                    <h4>库洛米</h4>
+                    <p>KUROMI</p>
                 </div>
-                <div class="line"></div>
-                <p><span class="label">中文名</span><span class="value">库洛米</span><span class="label">生　日</span><span class="value">2005年10月31日</span></p>
-                <p><span class="label">外文名</span><span class="value">Kuromi</span><span class="label">星　座</span><span class="value">天蝎座</span></p>
-                <p><span class="label">别　名</span><span class="value">可梦美</span><span class="label">登场作品</span><span class="value">奇幻魔法Melody系列</span></p>
-                <p><span class="label">配　音</span><span class="value">竹内顺子(日本)</span><span class="label">关　系</span><span class="value">美乐蒂对手</span></p>
-                <p><span class="label">性　别</span><span class="value">女</span><span class="label">部　下</span><span class="value">巴库</span></p>
-                <div class="line"></div>
-            </div>
-            <div class="mag-img">
-                <img src="images/库洛米/kv1 (1).jpg" alt="库洛米设定图">
+                <div class="right-card">
+                    <p>自称是美乐蒂一辈子的宿敌。</p>
+                    <p>虽然看起来大大咧咧，但其实特别有少女情怀。</p>
+                    <p>超~喜欢帅气的人。魅力点是黑色头巾和粉色骷髅。</p>
+                    <p>爱好是写日记，最近还迷上了恋爱小说</p>
+                    <p>嘴硬心软，别扭又渴望真挚的友情。</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- 第3个版块：浅紫背景【角色生活】 -->
-<div class="section section-odd">
-    <div class="section-inner">
-        <div class="title-box">
-            <h3 class="title">角色生活</h3>
-            <small>LIFE DAILY</small>
-        </div>
-        <div class="life-section">
-            <div class="life-box">
-                <img src="images/库洛米/2.jpg">
-                <div class="life-text">
-                    💜 家人：爸爸、妈妈、妹妹<br>
-                    💜 标志性装扮：黑色头巾+额头粉色骷髅<br>
-                    💜 性格底色：别扭傲娇，内心敏感柔软
-              </div>
-          </div>
-            <div class="life-box">
-                <img src="images/库洛米/7.jpeg">
-                <div class="life-text">
-                    💜 挚友&宿敌：美乐蒂<br>
-                    💜 忠心部下：食梦兽巴库<br>
-                    💜 暗恋对象：小提琴手柊惠一
-              </div>
-          </div>
-            <div class="life-box">
-                <img src="images/库洛米/10.jpeg">
-                <div class="life-text">
-                    💜 专属笔记：Kuromi日记记录本<br>
-                    💜 爱好：写恋爱小说、收集黑色音符<br>
-                    💜 喜好：偏爱黑色，爱吃红葱与肉类
-              </div>
-          </div>
+    <!-- 第2个版块：稍深紫背景 角色基础信息 -->
+    <div class="section section-even">
+        <div class="section-inner">
+            <div class="title-box">
+                <h3 class="title">角色特点</h3>
+                <small>ABOUT KUROMI</small>
+            </div>
+
+            <div class="mag-box">
+                <div class="mag-text">
+                    <div class="img-row">
+                        <img src="images/库洛米/4.jpeg">
+                        <img src="images/库洛米/6.jpeg">
+                        <img src="images/库洛米/8.jpeg">
+                        <img src="images/库洛米/d1 (1).png">
+                    </div>
+                    <div class="line"></div>
+                    <p><span class="label">中文名</span><span class="value">库洛米</span><span class="label">生　日</span><span class="value">2005年10月31日</span></p>
+                    <p><span class="label">外文名</span><span class="value">Kuromi</span><span class="label">星　座</span><span class="value">天蝎座</span></p>
+                    <p><span class="label">别　名</span><span class="value">可梦美</span><span class="label">登场作品</span><span class="value">奇幻魔法Melody系列</span></p>
+                    <p><span class="label">配　音</span><span class="value">竹内顺子(日本)</span><span class="label">关　系</span><span class="value">美乐蒂对手</span></p>
+                    <p><span class="label">性　别</span><span class="value">女</span><span class="label">部　下</span><span class="value">巴库</span></p>
+                    <div class="line"></div>
+                </div>
+                <div class="mag-img">
+                    <img src="images/库洛米/kv1 (1).jpg" alt="库洛米设定图">
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- 第4个版块：稍深紫背景【人际关系 仅3张卡片，自适应高度包裹内容】 -->
-<div class="section section-even">
-    <div class="section-inner">
-        <div class="relation-wrap">
-            <div class="relation-title">人际关系</div>
-            <button class="arrow-left">&lt;</button>
-            <button class="arrow-right">&gt;</button>
-            <div class="relation-view">
-                <div class="relation-container">
-                    <!-- 卡片1：与美乐蒂的对立关系 -->
-                    <div class="relation-card">
-                        <div class="card-inner">
-                            <img class="card-avatar" src="images/库洛米/5.jpeg">
-                            <div class="relation-name">与美乐蒂的对立关系</div>
-                            <div class="relation-desc">
-                                酷洛米和美乐蒂是《奇幻魔法Melody》中的主要角色，她们之间的关系是对手关系。库洛米经常受到美乐蒂无意的欺负，因此视美乐蒂为仇人，而美乐蒂对此毫不知情。尽管她们在设定上看起来水火不容，但实际上她们小时候是朋友关系，由于酷洛米在无意识的行为中受到美乐蒂的欺负，逐渐视美乐蒂为仇人。
-                            </div>
-                        </div>
+    <!-- 第3个版块：浅紫背景 角色日常生活介绍 -->
+    <div class="section section-odd">
+        <div class="section-inner">
+            <div class="title-box">
+                <h3 class="title">角色生活</h3>
+                <small>LIFE DAILY</small>
+            </div>
+            <div class="life-section">
+                <div class="life-box">
+                    <img src="images/库洛米/2.jpg">
+                    <div class="life-text">
+                        💜 家人：爸爸、妈妈、妹妹<br>
+                        💜 标志性装扮：黑色头巾+额头粉色骷髅<br>
+                        💜 性格底色：别扭傲娇，内心敏感柔软
                     </div>
-                    <!-- 卡片2：与巴库的助手关系 -->
-                    <div class="relation-card">
-                        <div class="card-inner">
-                            <img class="card-avatar" src="images/库洛米/b.jpg">
-                            <div class="relation-name">与巴库的助手关系</div>
-                            <div class="relation-desc">
-                                酷洛米有一位名叫巴库的助手，它是一只貘，非常忠诚于库洛米。巴库经常被库洛米拳打脚踢，但依然忠心耿耿，帮助酷洛米收集黑色音符。
-                            </div>
-                        </div>
+                </div>
+                <div class="life-box">
+                    <img src="images/库洛米/7.jpeg">
+                    <div class="life-text">
+                        💜 挚友&宿敌：美乐蒂<br>
+                        💜 忠心部下：食梦兽巴库<br>
+                        💜 暗恋对象：小提琴手柊惠一
                     </div>
-                    <!-- 卡片3：与人类世界的关系 -->
-                    <div class="relation-card">
-                        <div class="card-inner">
-                            <img class="card-avatar" src="images/库洛米/11.jpeg">
-                            <div class="relation-name">与人类世界的关系</div>
-                            <div class="relation-desc">
-                                酷洛米因为调皮捣蛋的行为被判入反省室，后来逃狱来到人类世界，成为马里兰乐园的通缉犯。她在人类世界中继续她的恶作剧，同时也与美乐蒂展开了对抗。
-                            </div>
-                        </div>
+                </div>
+                <div class="life-box">
+                    <img src="images/库洛米/10.jpeg">
+                    <div class="life-text">
+                        💜 专属笔记：Kuromi日记记录本<br>
+                        💜 爱好：写恋爱小说、收集黑色音符<br>
+                        💜 喜好：偏爱黑色，爱吃红葱与肉类
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<a href="index.html" class="back-home">🏠 回首页</a>
+    <!-- 第4个版块：稍深紫背景 左右滑动人际关系卡片 -->
+    <div class="section section-even">
+        <div class="section-inner">
+            <div class="relation-wrap">
+                <div class="relation-title">人际关系</div>
+                <button class="arrow-left">&lt;</button>
+                <button class="arrow-right">&gt;</button>
+                <div class="relation-view">
+                    <div class="relation-container">
+                        <!-- 卡片1：与美乐蒂的对立关系 -->
+                        <div class="relation-card">
+                            <div class="card-inner">
+                                <img class="card-avatar" src="images/库洛米/5.jpeg">
+                                <div class="relation-name">与美乐蒂的对立关系</div>
+                                <div class="relation-desc">
+                                    酷洛米和美乐蒂是《奇幻魔法Melody》中的主要角色，她们之间的关系是对手关系。库洛米经常受到美乐蒂无意的欺负，因此视美乐蒂为仇人，而美乐蒂对此毫不知情。尽管她们在设定上看起来水火不容，但实际上她们小时候是朋友关系，由于酷洛米在无意识的行为中受到美乐蒂的欺负，逐渐视美乐蒂为仇人。
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 卡片2：与巴库的助手关系 -->
+                        <div class="relation-card">
+                            <div class="card-inner">
+                                <img class="card-avatar" src="images/库洛米/b.jpg">
+                                <div class="relation-name">与巴库的助手关系</div>
+                                <div class="relation-desc">
+                                    酷洛米有一位名叫巴库的助手，它是一只貘，非常忠诚于库洛米。巴库经常被库洛米拳打脚踢，但依然忠心耿耿，帮助酷洛米收集黑色音符。
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 卡片3：与人类世界的关系 -->
+                        <div class="relation-card">
+                            <div class="card-inner">
+                                <img class="card-avatar" src="images/库洛米/11.jpeg">
+                                <div class="relation-name">与人类世界的关系</div>
+                                <div class="relation-desc">
+                                    酷洛米因为调皮捣蛋的行为被判入反省室，后来逃狱来到人类世界，成为马里兰乐园的通缉犯。她在人类世界中继续她的恶作剧，同时也与美乐蒂展开了对抗。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<script>
-// 单张卡片切换逻辑
-const container = document.querySelector('.relation-container');
-const leftBtn = document.querySelector('.arrow-left');
-const rightBtn = document.querySelector('.arrow-right');
-const cards = document.querySelectorAll('.relation-card');
-let currentIndex = 0;
-const total = cards.length;
-
-function updateSlide(){
-    container.style.transform = `translateX(-${currentIndex * 100}%)`;
-}
-
-rightBtn.addEventListener('click', ()=>{
-    if(currentIndex < total - 1){
-        currentIndex++;
-        updateSlide();
+    <!-- 返回首页悬浮按钮 -->
+    <a href="index.html" class="back-home">🏠 回首页</a>
+    <script>
+    // 人际关系卡片左右切换逻辑
+    var container = document.querySelector('.relation-container');
+    var leftBtn = document.querySelector('.arrow-left');
+    var rightBtn = document.querySelector('.arrow-right');
+    var cards = document.querySelectorAll('.relation-card');
+    var currentIndex = 0;
+    var total = cards.length;
+    // 更新卡片位移位置
+    function updateSlide() {
+        container.style.transform = 'translateX(-' + currentIndex * 100 + '%)';
     }
-})
-leftBtn.addEventListener('click', ()=>{
-    if(currentIndex > 0){
-        currentIndex--;
-        updateSlide();
-    }
-})
-
-// 回顶部按钮逻辑不变
-var backBtn = document.querySelector('.back-home');
-function checkScroll() {
-    var sTop = window.pageYOffset || document.documentElement.scrollTop;
-    var totalH = document.documentElement.scrollHeight;
-    var viewH = document.documentElement.clientHeight;
-    if(sTop + viewH >= totalH - 80){
-        backBtn.classList.add('show');
-    }else{
-        backBtn.classList.remove('show');
-    }
-}
-window.addEventListener('scroll', checkScroll);
-checkScroll();
-</script>
+    // 右箭头点击
+    rightBtn.addEventListener('click', function(){
+        if(currentIndex < total - 1){
+            currentIndex++;
+            updateSlide();
+        }
+    });
+    // 左箭头点击（补全你代码缺失的左按钮逻辑）
+    leftBtn.addEventListener('click', function(){
+        if(currentIndex > 0){
+            currentIndex--;
+            updateSlide();
+        }
+    });
+        // 页面滚动监听，滚动到底部显示返回首页按钮
+        var backBtn = document.querySelector('.back-home');
+        function checkScroll() {
+            var sTop = window.pageYOffset || document.documentElement.scrollTop;
+            var totalH = document.documentElement.scrollHeight;
+            var viewH = document.documentElement.clientHeight;
+            if(sTop + viewH >= totalH - 80){
+                backBtn.classList.add('show');
+            }else{
+                backBtn.classList.remove('show');
+            }
+        }
+        window.addEventListener('scroll', checkScroll);
+        checkScroll();
+    </script>
 </body>
 </html>

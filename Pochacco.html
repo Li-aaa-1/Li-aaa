@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>帕恰狗 - Pochacco</title>
     <style>
+        /* 全局样式初始化 */
         *{
             margin:0;
             padding:0;
@@ -13,7 +14,7 @@
             font-family:"微软雅黑",sans-serif;
             background:#f9fbe7;
         }
-        /*导航*/
+        /*  顶部导航栏样式 */
         .nav{
             background:#f0f8d7;
             padding:18px;
@@ -40,27 +41,27 @@
             max-width:1100px;
             margin:30px auto;
         }
-.title{
-    font-size:30px;
-    color:#6b8800;
-    margin:0;
-    font-weight:bold;
-}
-.title-box{
-    text-align:center;
-    margin:35px 0 15px;
-}
-.title-box small{
-    display:block;
-    font-size:15px;
-    color:#8fa044;
-    letter-spacing:3px;
-    margin-top:6px;
-    font-family:Arial;
-    font-weight:600;
-}
 
-        /*第一行：左图 右文字*/
+        .title{
+            font-size:30px;
+            color:#6b8800;
+            margin:0;
+            font-weight:bold;
+        }
+        .title-box{
+            text-align:center;
+            margin:35px 0 15px;
+        }
+        .title-box small{
+            display:block;
+            font-size:15px;
+            color:#8fa044;
+            letter-spacing:3px;
+            margin-top:6px;
+            font-family:Arial;
+            font-weight:600;
+        }
+        /*  首区域 左右1:1图文布局  */
         .top-row{
             display:grid;
             grid-template-columns:1fr 1fr;
@@ -100,8 +101,7 @@
             border-bottom:2px dashed #c2d270;
             padding-bottom:12px;
         }
-
-        /*角色特点 7:3 已删除虚线上方描述文字*/
+        /* 角色信息 7:3图文布局  */
         .feature-box{
             display:grid;
             grid-template-columns:7fr 3fr;
@@ -130,15 +130,14 @@
             color:#555;
         }
         .val{
-	color: #899b42;
+	        color: #899b42;
         }
         .feature-right img{
             width:100%;
             border-radius:10px;
             display:block;
         }
-
-        /* 形象设定：三栏卡片，每栏上图下文 */
+        /* 形象设定 三栏卡片布局 */
         .setting-wrap{
             background:#eef6cc;
             border-radius:10px;
@@ -176,8 +175,7 @@
             color:#333;
             text-align:left;
         }
-
-        /* ========= 前往参观板块：图片缩放适配容器、一高一低上下交错 ========= */
+        /* 高低交错图片画廊板块 */
         .gallery-wrap{
             background:#eef6cc;
             border-radius:10px;
@@ -190,7 +188,7 @@
             margin-bottom:40px;
             position:relative;
         }
-        /* 三个圆点定位 */
+        /* 三个圆点定位装饰 */
         .gallery-top-text::before{
             content:"";
             position:absolute;
@@ -227,14 +225,12 @@
             content:"🌾";
             margin:0 8px;
         }
-        /* 顶部对齐，靠margin-top实现高低交错 */
         .gallery-row{
             display:flex;
             justify-content:center;
             align-items:flex-start;
             gap:18px;
         }
-        /* 统一宽度容器，图片自动缩放填满内部 */
         .gallery-item{
             width:16%;
             border:1px solid #c2d270;
@@ -247,7 +243,6 @@
             object-fit:cover;
             display:block;
         }
-        /* 容器高度一致，整体上下偏移制造错落视觉 */
         .item1{
             height:310px;
             margin-top:0;
@@ -268,8 +263,7 @@
             height:310px;
             margin-top:0;
         }
-
-        /* ========= 帕恰狗淡色回首页按钮 ========= */
+        /*  右下角返回首页悬浮按钮  */
         .back-home{
             position: fixed;
             right: 20px;
@@ -294,154 +288,145 @@
         .back-home:hover{
             background: #dce99c;
         }
-
     </style>
 </head>
-
 <body>
-<div class="nav">
-    <a href="index.html">Sanrio Friends | 网站首页</a>
-    <a href="kitty.html">凯蒂猫</a>
-    <a href="melody.html">美乐蒂</a>
-    <a href="purin.html">布丁狗</a>
-    <a href="cinna.html">大耳狗</a>
-    <a href="kuromi.html">库洛米</a>
-    <a href="Pochacco.html" class="active">帕恰狗</a>
-</div>
-
-<div class="container">
-    <!--第一排-->
-    <div class="top-row">
-      <div class="left-card">
-            <img src="images/帕恰狗/d1.png">
-            <h4>帕恰狗</h4>
-            <p>POCHACCO</p>
-      </div>
-        <div class="right-card">
-            <p>帕恰狗的好奇心旺盛，有些冒失，又有一点点爱管闲事。</p>
-            <p>他是喜欢绕道散步的小狗男孩。出生在软绵绵城郊外的黄莺小巷。</p>
-            <p>身高和4大杯他最爱吃的香蕉冰激凌一样；</p>
-            <p>体重则是相当于3根软绵绵城田野中的胡萝卜。</p>
-        </div>
+    <!-- 页面顶部导航栏 -->
+    <div class="nav">
+        <a href="index.html">Sanrio Friends | 网站首页</a>
+        <a href="kitty.html">凯蒂猫</a>
+        <a href="melody.html">美乐蒂</a>
+        <a href="purin.html">布丁狗</a>
+        <a href="cinna.html">大耳狗</a>
+        <a href="kuromi.html">库洛米</a>
+        <a href="Pochacco.html" class="active">帕恰狗</a>
     </div>
-
-    <!--角色特点【已删除虚线上方黑色描述文字】-->
-<div class="title-box">
-    <h3 class="title">角色特点</h3>
-    <small>ABOUT POCHACCO</small>
-</div>
-    <div class="feature-box">
-        <div class="feature-left">
-            <div class="info-table">
-                <div class="table-row">
-                    <span class="label">中文名</span>
-                    <span class="val">帕恰狗</span>
-                    <span class="label">生　日</span>
-                    <span class="val">2月29日</span>
-                </div>
-                <div class="table-row">
-                    <span class="label">外文名</span>
-                    <span class="val">Pochacco</span>
-                    <span class="label">星　座</span>
-                    <span class="val">双鱼座</span>
-                </div>
-                <div class="table-row">
-                    <span class="label">别　名</span>
-                    <span class="val">波查科</span>
-                    <span class="label">出生地</span>
-                    <span class="val">软绵绵城</span>
-                </div>
-                <div class="table-row">
-                    <span class="label">性　别</span>
-                    <span class="val">男</span>
-                    <span class="label">爱　好</span>
-                    <span class="val">运动</span>
-                </div>
-                <div class="table-row">
-                    <span class="label">登场作品</span>
-                    <span class="val">Hello Kitty爱漫游</span>
-                    <span class="label">爱吃食物</span>
-                    <span class="val">香蕉冰淇淋</span>
-                </div>
+    <div class="container">
+        <!-- 第一版块：角色头部简介 -->
+        <div class="top-row">
+            <div class="left-card">
+                <img src="images/帕恰狗/d1.png">
+                <h4>帕恰狗</h4>
+                <p>POCHACCO</p>
+            </div>
+            <div class="right-card">
+                <p>帕恰狗的好奇心旺盛，有些冒失，又有一点点爱管闲事。</p>
+                <p>他是喜欢绕道散步的小狗男孩。出生在软绵绵城郊外的黄莺小巷。</p>
+                <p>身高和4大杯他最爱吃的香蕉冰激凌一样；</p>
+                <p>体重则是相当于3根软绵绵城田野中的胡萝卜。</p>
             </div>
         </div>
-        <div class="feature-right">
-            <img src="images/帕恰狗/10.jpeg">
+        <!-- 第二版块：角色基础信息表格 -->
+        <div class="title-box">
+            <h3 class="title">角色特点</h3>
+            <small>ABOUT POCHACCO</small>
         </div>
-    </div>
-
-
-    <!-- 形象设定：三栏分别对应姓名由来 / 角色外形 / 性格特点 每栏上方配图 -->
-<div class="title-box">
-    <h3 class="title">形象设定</h3>
-    <small>CHARACTER DESIGN</small>
-</div>
-  <div class="setting-wrap">
-    <div class="setting-three">
-          <div class="setting-card">
-              <img src="images/帕恰狗/8.jpeg" alt="姓名由来配图">
-              <h4>姓名由来</h4>
-              <p>帕恰狗有一张胖胖的脸，而英语中（pocha pocha----chubby）译为胖乎乎的，合在一起简称Pochacco，帕恰狗是其音译，刚好与他狗狗的身份对应。</p>
-      </div>
-          <div class="setting-card">
-              <img src="images/帕恰狗/1.jpg" alt="角色外形配图">
-              <h4>角色外形</h4>
-              <p>帕恰狗于1989年首次亮相。形象为长长的耳朵和胖胖的脸，并未穿衣服，1991年出现身穿衬衫的形象。</p>
-      </div>
-          <div class="setting-card">
-              <img src="images/帕恰狗/9.jpeg" alt="性格特点配图">
-              <h4>性格特点</h4>
-              <p>帕恰狗好奇心旺盛，有些冒失，有一点点爱管闲事。性格活泼，平时很热爱运动，特别喜欢篮球足球（尤其是当守门员）。</p>
-      </div>
-    </div>
-    </div>
-
-    <!-- 前往参观板块：图片缩放适配容器、一高一低交错布局 -->
-    <div class="gallery-wrap">
-        <div class="gallery-top-text">
-            <span>图片展示</span>
+        <div class="feature-box">
+            <div class="feature-left">
+                <div class="info-table">
+                    <div class="table-row">
+                        <span class="label">中文名</span>
+                        <span class="val">帕恰狗</span>
+                        <span class="label">生　日</span>
+                        <span class="val">2月29日</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="label">外文名</span>
+                        <span class="val">Pochacco</span>
+                        <span class="label">星　座</span>
+                        <span class="val">双鱼座</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="label">别　名</span>
+                        <span class="val">波查科</span>
+                        <span class="label">出生地</span>
+                        <span class="val">软绵绵城</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="label">性　别</span>
+                        <span class="val">男</span>
+                        <span class="label">爱　好</span>
+                        <span class="val">运动</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="label">登场作品</span>
+                        <span class="val">Hello Kitty爱漫游</span>
+                        <span class="label">爱吃食物</span>
+                        <span class="val">香蕉冰淇淋</span>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-right">
+                <img src="images/帕恰狗/10.jpeg">
+            </div>
         </div>
-        <div class="gallery-row">
-            <div class="gallery-item item1">
-                <img src="images/帕恰狗/3.jpg" alt="">
+        <!-- 第三版块：三栏形象设定介绍 -->
+        <div class="title-box">
+            <h3 class="title">形象设定</h3>
+            <small>CHARACTER DESIGN</small>
+        </div>
+        <div class="setting-wrap">
+            <div class="setting-three">
+                <div class="setting-card">
+                    <img src="images/帕恰狗/8.jpeg" alt="姓名由来配图">
+                    <h4>姓名由来</h4>
+                    <p>帕恰狗有一张胖胖的脸，而英语中（pocha pocha----chubby）译为胖乎乎的，合在一起简称Pochacco，帕恰狗是其音译，刚好与他狗狗的身份对应。</p>
+                </div>
+                <div class="setting-card">
+                    <img src="images/帕恰狗/1.jpg" alt="角色外形配图">
+                    <h4>角色外形</h4>
+                    <p>帕恰狗于1989年首次亮相。形象为长长的耳朵和胖胖的脸，并未穿衣服，1991年出现身穿衬衫的形象。</p>
+                </div>
+                <div class="setting-card">
+                    <img src="images/帕恰狗/9.jpeg" alt="性格特点配图">
+                    <h4>性格特点</h4>
+                    <p>帕恰狗好奇心旺盛，有些冒失，有一点点爱管闲事。性格活泼，平时很热爱运动，特别喜欢篮球足球（尤其是当守门员）。</p>
+                </div>
             </div>
-            <div class="gallery-item item2">
-                <img src="images/帕恰狗/a.jpg" alt="">
+        </div>
+        <!-- 第四版块：高低交错图片展示画廊 -->
+        <div class="gallery-wrap">
+            <div class="gallery-top-text">
+                <span>图片展示</span>
             </div>
-            <div class="gallery-item item3">
-                <img src="images/帕恰狗/b.jpg" alt="">
-            </div>
-            <div class="gallery-item item4">
-                <img src="images/帕恰狗/kv4.jpg" alt="">
-            </div>
-            <div class="gallery-item item5">
-                <img src="images/帕恰狗/c.jpg" alt="">
+            <div class="gallery-row">
+                <div class="gallery-item item1">
+                    <img src="images/帕恰狗/3.jpg" alt="">
+                </div>
+                <div class="gallery-item item2">
+                    <img src="images/帕恰狗/a.jpg" alt="">
+                </div>
+                <div class="gallery-item item3">
+                    <img src="images/帕恰狗/b.jpg" alt="">
+                </div>
+                <div class="gallery-item item4">
+                    <img src="images/帕恰狗/kv4.jpg" alt="">
+                </div>
+                <div class="gallery-item item5">
+                    <img src="images/帕恰狗/c.jpg" alt="">
+                </div>
             </div>
         </div>
     </div>
-
-</div>
-
-<!-- 回首页按钮 -->
-<a href="index.html" class="back-home">🏠 回首页</a>
-
-<script>
-// 滑到底显示回首页按钮
-document.addEventListener('DOMContentLoaded', function () {
-    var backBtn = document.querySelector('.back-home');
-    function checkScroll() {
-        var sTop = window.pageYOffset || document.documentElement.scrollTop;
-        var totalH = document.documentElement.scrollHeight;
-        var viewH = document.documentElement.clientHeight;
-        if(sTop + viewH >= totalH - 80){
-            backBtn.classList.add('show');
-        }else{
-            backBtn.classList.remove('show');
-        }
-    }
-    window.addEventListener('scroll', checkScroll);
-    checkScroll();
-});
-</script>
+    <!-- 返回首页悬浮按钮 -->
+    <a href="index.html" class="back-home">🏠 回首页</a>
+    <script>
+        // 页面加载完成后监听滚动，滚动至底部显示返回首页按钮
+        document.addEventListener('DOMContentLoaded', function () {
+            var backBtn = document.querySelector('.back-home');
+            function checkScroll() {
+                var sTop = window.pageYOffset || document.documentElement.scrollTop;
+                var totalH = document.documentElement.scrollHeight;
+                var viewH = document.documentElement.clientHeight;
+                if(sTop + viewH >= totalH - 80){
+                    backBtn.classList.add('show');
+                }else{
+                    backBtn.classList.remove('show');
+                }
+            }
+            window.addEventListener('scroll', checkScroll);
+            checkScroll();
+        });
+    </script>
 </body>
 </html>

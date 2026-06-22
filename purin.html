@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>布丁狗 - Pompompurin</title>
     <style>
+        /* 全局样式初始化  */
         *{
             margin:0;
             padding:0;
@@ -13,7 +14,8 @@
             font-family:"微软雅黑",sans-serif;
             background:#fffbe8;
         }
-        /*导航*/
+
+        /*  顶部导航栏样式  */
         .nav{
             background:#fff3cc;
             padding:18px;
@@ -40,27 +42,27 @@
             max-width:1100px;
             margin:30px auto;
         }
-.title{
-    font-size:30px;
-    color:#996600;
-    margin:0;
-    font-weight:bold; /* 加粗 */
-}
-.title-box{
-    text-align:center;
-    margin:35px 0 15px;
-}
-.title-box small{
-    display:block;
-    font-size:15px;
-    color:#bb9955;
-    letter-spacing:3px;
-    margin-top:6px;
-    font-family:Arial;
-    font-weight:600;
-}
+        .title{
+            font-size:30px;
+            color:#996600;
+            margin:0;
+            font-weight:bold; 
+        }
+        .title-box{
+            text-align:center;
+            margin:35px 0 15px;
+        }
+        .title-box small{
+            display:block;
+            font-size:15px;
+            color:#bb9955;
+            letter-spacing:3px;
+            margin-top:6px;
+            font-family:Arial;
+            font-weight:600;
+        }
 
-        /*第一行：左图 右文字*/
+        /*  首区域 左右1:1图文布局  */
         .top-row{
             display:grid;
             grid-template-columns:1fr 1fr;
@@ -101,7 +103,7 @@
             padding-bottom:12px;
         }
 
-        /*角色特点 7:3*/
+        /*  角色信息 7:3图文布局  */
         .feature-box{
             display:grid;
             grid-template-columns:7fr 3fr;
@@ -136,7 +138,7 @@
             color:#555;
         }
         .val{
-	color: #ABAD52;
+	        color: #ABAD52;
         }
         .feature-right img{
             width:100%;
@@ -144,7 +146,7 @@
             display:block;
         }
 
-        /*角色生活：一排三列 · 上图下文字*/
+        /*  生活介绍 三列卡片布局  */
         .life-section{
             display:grid;
             grid-template-columns:repeat(3,1fr);
@@ -166,7 +168,6 @@
             line-height:2;
         }
 
-        /*单独大图*/
         .single-img{
             margin-bottom:30px;
         }
@@ -175,7 +176,7 @@
             border-radius:10px;
         }
 
-        /* 形象设定：圆形图片 + 右上角点击标签 */
+        /*  形象设定+点击弹窗模块  */
         .setting-wrap{
             background:#fff2c8;
             border-radius:10px;
@@ -227,14 +228,14 @@
             padding:8px 0;
         }
 
-        /* ========= 布丁狗淡色回首页按钮 ========= */
+        /*  右下角返回首页悬浮按钮 */
         .back-home{
             position: fixed;
             right: 20px;
             bottom: 12px;
             padding: 5px 11px;
             font-size: 12px;
-            background: #fff2a8; /* 淡奶黄色，更柔和 */
+            background: #fff2a8; 
             color: #996600;
             border-radius: 20px;
             text-decoration: none;
@@ -257,180 +258,176 @@
 </head>
 
 <body>
-<div class="nav">
-    <a href="index.html">Sanrio Friends | 网站首页</a>
-    <a href="kitty.html">凯蒂猫</a>
-    <a href="melody.html">美乐蒂</a>
-    <a href="purin.html" class="active">布丁狗</a>
-    <a href="cinna.html">大耳狗</a>
-    <a href="kuromi.html">库洛米</a>
-    <a href="pochacco.html">帕恰狗</a>
-</div>
-
-<div class="container">
-    <!--第一排-->
-    <div class="top-row">
-      <div class="left-card">
-            <img src="images/布丁狗/1.jpeg">
-            <h4>布丁狗</h4>
-            <p>POMPOMPURIN</p>
-        </div>
-        <div class="right-card">
-            <p>布丁狗是以戴着咖啡色贝雷帽为特征的金毛犬男孩。</p>
-            <p>他性格悠闲，最喜爱的词汇是“出去玩”，最讨厌的词语是“看家”。</p>
-            <p>爱好是收集鞋子。特长是睡午觉和布丁狗体操。</p>
-            <p>他和谁都能马上变成好朋友。</p>
-        </div>
+    <!-- 页面顶部导航栏 -->
+    <div class="nav">
+        <a href="index.html">Sanrio Friends | 网站首页</a>
+        <a href="kitty.html">凯蒂猫</a>
+        <a href="melody.html">美乐蒂</a>
+        <a href="purin.html" class="active">布丁狗</a>
+        <a href="cinna.html">大耳狗</a>
+        <a href="kuromi.html">库洛米</a>
+        <a href="pochacco.html">帕恰狗</a>
     </div>
 
-    <!--角色特点-->
-<div class="title-box">
-    <h3 class="title">角色特点</h3>
-    <small>ABOUT PURIN</small>
-</div>
-    <div class="feature-box">
-        <div class="feature-left">
-            <div class="feature-desc">
+    <div class="container">
+        <!-- 第一版块：角色头部简介 -->
+        <div class="top-row">
+            <div class="left-card">
+                <img src="images/布丁狗/1.jpeg">
+                <h4>布丁狗</h4>
+                <p>POMPOMPURIN</p>
+            </div>
+            <div class="right-card">
+                <p>布丁狗是以戴着咖啡色贝雷帽为特征的金毛犬男孩。</p>
+                <p>他性格悠闲，最喜爱的词汇是“出去玩”，最讨厌的词语是“看家”。</p>
+                <p>爱好是收集鞋子。特长是睡午觉和布丁狗体操。</p>
+                <p>他和谁都能马上变成好朋友。</p>
+            </div>
+        </div>
+
+        <!-- 第二版块：角色基础信息介绍 -->
+        <div class="title-box">
+            <h3 class="title">角色特点</h3>
+            <small>ABOUT PURIN</small>
+        </div>
+        <div class="feature-box">
+            <div class="feature-left">
+                <div class="feature-desc">
 布丁狗是一只性格非常悠闲、温和的小狗。<br>
 喜欢睡觉、散步，以及吃美味的布丁。<br>
 对朋友十分友善，身边有许多甜品小伙伴。<br>
 天生自带治愈感，是让人看了就心情变好的角色。
+                </div>
+                <div class="info-table">
+                    <div class="table-row">
+                        <span class="label">中文名</span>
+                        <span class="val">布丁狗</span>
+                        <span class="label">生　日</span>
+                        <span class="val">1996年4月16日</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="label">外文名</span>
+                        <span class="val">Pom Pom Purin</span>
+                        <span class="label">星　座</span>
+                        <span class="val">白羊座</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="label">别　名</span>
+                        <span class="val">布丁</span>
+                        <span class="label">创造时间</span>
+                        <span class="val">1996年</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="label">性　别</span>
+                        <span class="val">男</span>
+                        <span class="label">创造者</span>
+                        <span class="val">地井明子</span>
+                    </div>
+                    <div class="table-row">
+                        <span class="label">登场作品</span>
+                        <span class="val">日本三丽鸥系列作品</span>
+                        <span class="label">创造国家</span>
+                        <span class="val">日本</span>
+                    </div>
+                </div>
             </div>
-            <div class="info-table">
-                <div class="table-row">
-                    <span class="label">中文名</span>
-                    <span class="val">布丁狗</span>
-                    <span class="label">生　日</span>
-                    <span class="val">1996年4月16日</span>
+            <div class="feature-right">
+                <img src="images/布丁狗/8.jpeg">
+            </div>
+        </div>
+
+        <!-- 第三版块：角色日常生活介绍 -->
+        <div class="title-box">
+            <h3 class="title">角色生活</h3>
+            <small>LIFE DAILY</small>
+        </div>
+        <div class="life-section">
+            <div class="life-box">
+                <img src="images/布丁狗/1.jpeg">
+                <div class="life-text">
+                    🍮 品种：黄金猎犬<br>
+                    🍮 特征：咖啡色的帽子<br>
+                    🍮 兴趣：收集鞋子
                 </div>
-                <div class="table-row">
-                    <span class="label">外文名</span>
-                    <span class="val">Pom Pom Purin</span>
-                    <span class="label">星　座</span>
-                    <span class="val">白羊座</span>
+            </div>
+            <div class="life-box">
+                <img src="images/布丁狗/3.jpeg">
+                <div class="life-text">
+                    🍮 住处：主人家<br>
+                    🍮 性格：悠闲自在<br>
+                    🍮 最喜欢的食物：布丁<br>
+                    🍮 未来的梦想：成为一只真正的狮子
                 </div>
-                <div class="table-row">
-                    <span class="label">别　名</span>
-                    <span class="val">布丁</span>
-                    <span class="label">创造时间</span>
-                    <span class="val">1996年</span>
-                </div>
-                <div class="table-row">
-                    <span class="label">性　别</span>
-                    <span class="val">男</span>
-                    <span class="label">创造者</span>
-                    <span class="val">地井明子</span>
-                </div>
-                <div class="table-row">
-                    <span class="label">登场作品</span>
-                    <span class="val">日本三丽鸥系列作品</span>
-                    <span class="label">创造国家</span>
-                    <span class="val">日本</span>
+            </div>
+            <div class="life-box">
+                <img src="images/布丁狗/2.jpeg">
+                <div class="life-text">
+                    🍮 好朋友：老鼠、仓鼠、小鸟<br>
+                    🍮 最喜欢的日子：生日<br>
+                    🍮 造型：软萌圆胖，黄色身体
                 </div>
             </div>
         </div>
-        <div class="feature-right">
-            <img src="images/布丁狗/8.jpeg">
-        </div>
-    </div>
 
-    <!--角色生活：三列 · 上图下文字-->
-<div class="title-box">
-    <h3 class="title">角色生活</h3>
-    <small>LIFE DAILY</small>
-</div>
-    <div class="life-section">
-        <div class="life-box">
-            <img src="images/布丁狗/1.jpeg">
-            <div class="life-text">
-                🍮 品种：黄金猎犬<br>
-                🍮 特征：咖啡色的帽子<br>
-                🍮 兴趣：收集鞋子
+        <!-- 第四版块：形象设定，点击图片弹出帽子由来故事 -->
+        <div class="title-box">
+            <h3 class="title">形象设定</h3>
+            <small>CHARACTER DESIGN</small>
+        </div>
+        <div class="setting-wrap">
+            <div class="img-container" id="clickArea">
+                <img src="images/布丁狗/6.jpeg">
+                <div class="click-tag">点击！</div>
             </div>
-        </div>
-        <div class="life-box">
-            <img src="images/布丁狗/3.jpeg">
-            <div class="life-text">
-                🍮 住处：主人家<br>
-                🍮 性格：悠闲自在<br>
-                🍮 最喜欢的食物：布丁<br>
-                🍮 未来的梦想：成为一只真正的狮子
-            </div>
-        </div>
-        <div class="life-box">
-            <img src="images/布丁狗/2.jpeg">
-            <div class="life-text">
-                🍮 好朋友：老鼠、仓鼠、小鸟<br>
-                🍮 最喜欢的日子：生日<br>
-                🍮 造型：软萌圆胖，黄色身体
-          </div>
-      </div>
-    </div>
 
-
-    <!-- ✅ 形象设定（最终版） -->
-<div class="title-box">
-    <h3 class="title">形象设定</h3>
-    <small>CHARACTER DESIGN</small>
-</div>
-  <div class="setting-wrap">
-        <div class="img-container" id="clickArea">
-            <img src="images/布丁狗/6.jpeg">
-            <!-- 图片右上角：点击！圆角标签 -->
-          <div class="click-tag">点击！</div>
-    </div>
-
-        <!-- 点击弹出的帽子故事 -->
-        <div class="story-popup" id="story">
+            <!-- 点击弹出的帽子故事 -->
+            <div class="story-popup" id="story">
 关于茶色帽子的故事：<br>
 有一天，我的小主人放了一顶小帽帽在我的头上，<br>
 然后大家都说：“哇！好像好好吃的布丁喔！”，<br>
 从此以后，大家就叫我“布丁狗”，<br>
 其实我也很喜欢这顶帽子呢！
+            </div>
+
+            <!-- 固定文字介绍 -->
+            <div class="set-text-box" style="margin-top:25px;">
+                <p>布丁狗是日本三丽鸥公司于1996年创造的卡通角色，设计者为地井明子，其品种为黄金猎犬（金毛）。</p>
+                <p>外形特征为圆胖的黄色身体、头戴咖啡色贝雷帽并具有兔唇嘴。</p>
+                <p>性格设定为悠闲自在、头脑迟钝且馋嘴贪吃，生日为4月16日。</p>
+                <p>兴趣爱好包括收集鞋子、睡觉以及做布丁体操，喜欢的食物是牛奶和妈妈做的布丁，喜欢的话是“去散步”。</p>
+                <p>布丁狗因被主人的姐姐戴上茶色贝雷帽后形似布丁而得名，并创造了布丁体操。</p>
+            </div>
         </div>
 
-        <!-- 固定文字介绍 -->
-        <div class="set-text-box" style="margin-top:25px;">
-            <p>布丁狗是日本三丽鸥公司于1996年创造的卡通角色，设计者为地井明子，其品种为黄金猎犬（金毛）。</p>
-            <p>外形特征为圆胖的黄色身体、头戴咖啡色贝雷帽并具有兔唇嘴。</p>
-            <p>性格设定为悠闲自在、头脑迟钝且馋嘴贪吃，生日为4月16日。</p>
-            <p>兴趣爱好包括收集鞋子、睡觉以及做布丁体操，喜欢的食物是牛奶和妈妈做的布丁，喜欢的话是“去散步”。</p>
-            <p>布丁狗因被主人的姐姐戴上茶色贝雷帽后形似布丁而得名，并创造了布丁体操。</p>
-        </div>
     </div>
 
-</div>
+    <!-- 返回首页悬浮按钮 -->
+    <a href="index.html" class="back-home">🏠 回首页</a>
 
-<!-- 回首页按钮 -->
-<a href="index.html" class="back-home">🏠 回首页</a>
-
-<script>
-// 点击弹出故事
-const clickArea = document.getElementById('clickArea');
-const story = document.getElementById('story');
-clickArea.onclick = function(){
-    story.style.display = story.style.display === 'block' ? 'none' : 'block';
-}
-
-// 滑到底显示回首页按钮
-// 滑到底显示回首页按钮
-// 滑到底显示回首页按钮
-//滑到底显示回首页按钮
-document.addEventListener('DOMContentLoaded', function () {
-    var backBtn = document.querySelector('.back-home');
-    function checkScroll() {
-        var sTop = window.pageYOffset || document.documentElement.scrollTop;
-        var totalH = document.documentElement.scrollHeight;
-        var viewH = document.documentElement.clientHeight;
-        if(sTop + viewH >= totalH - 80){
-            backBtn.classList.add('show');
-        }else{
-            backBtn.classList.remove('show');
+    <script>
+        // 点击圆形图片，切换显示/隐藏帽子由来弹窗
+        const clickArea = document.getElementById('clickArea');
+        const story = document.getElementById('story');
+        clickArea.onclick = function(){
+            story.style.display = story.style.display === 'block' ? 'none' : 'block';
         }
-    }
-    window.addEventListener('scroll', checkScroll);
-    checkScroll();
-});
-</script>
+
+        // 页面滚动监听，滚动接近底部时显示返回首页按钮
+        document.addEventListener('DOMContentLoaded', function () {
+            var backBtn = document.querySelector('.back-home');
+            function checkScroll() {
+                var sTop = window.pageYOffset || document.documentElement.scrollTop;
+                var totalH = document.documentElement.scrollHeight;
+                var viewH = document.documentElement.clientHeight;
+                if(sTop + viewH >= totalH - 80){
+                    backBtn.classList.add('show');
+                }else{
+                    backBtn.classList.remove('show');
+                }
+            }
+            window.addEventListener('scroll', checkScroll);
+            checkScroll();
+        });
+    </script>
 </body>
 </html>
